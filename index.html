@@ -3,8 +3,9 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>AI Readiness Assessment — Insurance Roles</title>
+<title>AI Readiness Assessment — Insurance roles (trial)</title>
 <style>
+
 :root{
   --c-navy:#1E293B; --c-dark-teal:#334155; --c-deep:#0F172A;
   --c-green:#86EFAC; --c-sky:#A5B4FC; --c-ice:#E0E7FF; --c-teal:#818CF8;
@@ -205,6 +206,137 @@ label.chk input{margin-top:3px;accent-color:var(--c-link);width:16px;height:16px
   .scorehead{background:#1E293B !important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
   .dim .dbar,.scale .track{-webkit-print-color-adjust:exact;print-color-adjust:exact}
 }
+
+/* ---- v2 additions ---- */
+.parts{margin:0 0 16px;padding-left:20px}
+.parts li{margin-bottom:6px}
+.stack{display:grid;gap:12px;margin-top:18px}
+.secban{background:#EEF2FF;border:1px solid #E0E7FF;border-radius:8px;padding:12px 14px;font-size:14px;margin-bottom:18px}
+/* checkboxes start empty; the tick only appears once selected */
+.opt .key.box{border:1.5px solid var(--c-border);background:#fff;color:transparent}
+.opt[aria-pressed="true"] .key.box{background:var(--c-link);border-color:var(--c-link);color:#fff}
+
+/* definitions shown under a question */
+.qnote{background:#F8FAFC;border:1px solid var(--c-border);border-radius:8px;padding:12px 16px;margin:-6px 0 18px;font-size:13.5px;line-height:1.5}
+.qnote dt{font-weight:bold;margin-top:8px}
+.qnote dt:first-child{margin-top:0}
+.qnote dd{margin:2px 0 0;color:#334155}
+
+/* ---- home / resume ---- */
+.homebtn{margin-left:auto;background:transparent;color:#fff;border:1.5px solid rgba(255,255,255,.45);border-radius:7px;
+  padding:8px 16px;font-family:inherit;font-size:14px;font-weight:bold;cursor:pointer}
+.homebtn:hover{background:rgba(255,255,255,.12)}
+.resume{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;
+  background:#FEF3C7;border:1px solid #FCD34D;border-radius:8px;padding:12px 14px;font-size:14px;margin-top:14px}
+.starthere{display:inline-block;vertical-align:middle;margin-left:6px;font-size:11px;font-weight:bold;text-transform:uppercase;
+  letter-spacing:.6px;background:var(--c-ice);color:var(--c-link);padding:2px 8px;border-radius:4px}
+.stepcard.done .starthere{display:none}
+.skipnote{font-size:13px;color:var(--c-muted);margin:12px 0 0;padding-top:10px;border-top:1px dashed var(--c-border)}
+
+/* ---- review ---- */
+.rvsec{font-size:12px;font-weight:bold;text-transform:uppercase;letter-spacing:.7px;color:var(--c-muted);margin:22px 0 4px}
+.rvsec:first-child{margin-top:4px}
+.rv .rq{font-size:13.5px;color:#334155;margin:0 0 8px;font-style:italic}
+.rv .rn{font-size:12px;color:var(--c-muted);font-weight:bold;margin-right:6px}
+.rv li .up{color:var(--c-link)}
+.rv li.nx .ic{color:var(--c-link)}
+
+/* ---- two-step layout ---- */
+.steps{margin:20px 0 6px}
+.stepcard{border:1.5px solid var(--c-border);border-radius:10px;padding:18px 18px 16px;background:#fff}
+.stepcard.done{border-color:#86EFAC;background:#F0FDF4}
+.sthead{display:flex;gap:12px;align-items:flex-start;margin-bottom:12px}
+.sthead > div{flex:1 1 220px;min-width:0}
+.stnum{flex:none;width:32px;height:32px;border-radius:50%;background:var(--c-navy);color:#fff;font-weight:bold;
+  font-size:15px;display:flex;align-items:center;justify-content:center}
+.stepcard.done .stnum{background:#16A34A}
+.stt{font-weight:bold;font-size:17px;line-height:1.3}
+.std{font-size:13.5px;color:var(--c-muted);margin-top:2px}
+.ststat{margin-left:auto;flex:none;font-size:12px;font-weight:bold;padding:4px 10px;border-radius:999px;background:#F1F5F9;color:var(--c-muted);white-space:nowrap}
+.stepcard.done .ststat{background:#DCFCE7;color:#166534}
+.stepcard .roles{margin:0}
+.stepjoin{display:flex;align-items:center;gap:10px;color:var(--c-muted);font-size:12.5px;font-weight:bold;
+  text-transform:uppercase;letter-spacing:.7px;margin:10px 0}
+.stepjoin::before,.stepjoin::after{content:'';flex:1;height:1px;background:var(--c-border)}
+.role .tag{margin-left:auto;flex:none;font-size:11.5px;font-weight:bold;color:#166534;background:#DCFCE7;padding:2px 8px;border-radius:999px}
+.fullnote{background:#EEF2FF;border:1px solid #E0E7FF;border-radius:8px;padding:12px 14px;font-size:14px;margin-top:16px}
+
+.flow{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:4px}
+.flowitem{border:1.5px solid var(--c-border);border-radius:9px;padding:14px 16px;background:#fff}
+.flowitem.done{border-color:#86EFAC;background:#F0FDF4}
+.flowitem.todo{border-style:dashed}
+.flowitem .fh{display:flex;gap:10px;align-items:center;font-weight:bold;font-size:15px}
+.flowitem .stnum{width:26px;height:26px;font-size:13px}
+.flowitem.done .stnum{background:#16A34A}
+.flowitem .fb{font-size:13.5px;color:var(--c-muted);margin:6px 0 10px}
+.flowitem .btns{display:flex;gap:8px;flex-wrap:wrap}
+.flowstate{font-size:12.5px;font-weight:bold;margin-top:12px}
+.flowstate.full{color:#166534}
+.flowstate.part{color:#92400E}
+.badge.pend{border-style:dashed;color:#E0E7FF}
+.ct.pend{border-style:dashed;background:#FFFBEB;border-color:#FCD34D}
+.ct.pend .st{background:#FEF3C7;color:#92400E}
+.ct li.pd .ic{color:#B45309}
+
+.srow{border:1px solid var(--c-border);border-radius:8px;padding:12px 14px;background:#fff}
+.srow .it{font-size:14.5px;margin-bottom:9px;line-height:1.45}
+.seg{display:flex;gap:6px;flex-wrap:wrap}
+.seg button{
+  flex:1 1 150px;border:1.5px solid var(--c-border);background:#fff;border-radius:6px;
+  padding:8px 10px;font-size:13px;cursor:pointer;font-family:inherit;color:var(--c-navy);line-height:1.35
+}
+.seg button:hover{border-color:var(--c-teal)}
+.seg button[aria-pressed="true"]{border-color:var(--c-link);background:var(--c-ice);font-weight:bold}
+
+.mrow{display:grid;grid-template-columns:1fr 1fr;gap:12px;align-items:center;border:1px solid var(--c-border);border-radius:8px;padding:12px 14px;background:#fff}
+.mrow .it{font-size:14.5px;line-height:1.45}
+.mrow select{
+  width:100%;padding:9px 10px;border:1.5px solid var(--c-border);border-radius:6px;font-family:inherit;
+  font-size:13.5px;color:var(--c-navy);background:#fff
+}
+.mrow select.set{border-color:var(--c-link);background:var(--c-ice)}
+
+.scorehead .tier{font-size:34px;font-weight:bold;color:var(--c-green);line-height:1.15;margin:8px 0 10px}
+.badges{display:flex;gap:8px;flex-wrap:wrap;margin-top:16px}
+.badge{font-size:12px;font-weight:bold;padding:5px 11px;border-radius:999px;color:#CBD5E1;border:1px solid rgba(255,255,255,.28)}
+.badge.on{background:var(--c-green);color:var(--c-navy);border-color:var(--c-green)}
+
+.ct{border:1px solid var(--c-border);border-radius:8px;padding:13px 16px;margin:10px 0;background:#fff}
+.ct.met{border-color:#86EFAC;background:#F0FDF4}
+.ct.na{background:#F8FAFC;color:var(--c-muted)}
+.ct h4{margin:0 0 6px;font-size:15px;display:flex;gap:8px;align-items:center}
+.ct .st{font-size:11.5px;font-weight:bold;text-transform:uppercase;letter-spacing:.6px;padding:2px 8px;border-radius:4px;background:#F1F5F9;color:var(--c-muted)}
+.ct.met .st{background:#DCFCE7;color:#166534}
+.ct ul{list-style:none;margin:0;padding:0;font-size:13.5px}
+.ct li{display:flex;gap:8px;padding:2px 0}
+.ct li .ic{width:16px;flex:none;font-weight:bold}
+.ct li.ok .ic{color:#16A34A}
+.ct li.no .ic{color:#DC2626}
+.ct li.na .ic{color:var(--c-muted)}
+.ct li .v{margin-left:auto;font-variant-numeric:tabular-nums;color:var(--c-muted);white-space:nowrap}
+
+.rv{border:1px solid var(--c-border);border-radius:8px;padding:14px 16px;margin:12px 0;background:#fff}
+.rv .rh{display:flex;justify-content:space-between;gap:12px;align-items:baseline;margin-bottom:8px}
+.rv .rt{font-weight:bold;font-size:14.5px}
+.pill{font-size:12px;font-weight:bold;padding:3px 9px;border-radius:999px;white-space:nowrap;flex:none}
+.pill.full{background:#DCFCE7;color:#166534}
+.pill.part{background:#FEF3C7;color:#92400E}
+.pill.none{background:#FEE2E2;color:#991B1B}
+.rv ul{margin:0 0 8px;padding-left:0;list-style:none;font-size:13.5px}
+.rv li{padding:3px 0;display:flex;gap:8px}
+.rv li .ic{width:16px;flex:none;font-weight:bold}
+.rv li.ok .ic{color:#16A34A}
+.rv li.no .ic{color:#DC2626}
+.rv li .yc{color:#991B1B}
+.rv .ex{font-size:13.5px;color:#334155;margin:6px 0 0}
+
+@media(max-width:600px){
+  .mrow{grid-template-columns:1fr}
+  .flow{grid-template-columns:1fr}
+  .sthead{flex-wrap:wrap}
+  .ststat{margin-left:44px}
+  .scorehead .tier{font-size:28px}
+}
 </style>
 </head>
 <body>
@@ -212,1037 +344,930 @@ label.chk input{margin-top:3px;accent-color:var(--c-link);width:16px;height:16px
 <header class="top">
   <div>
     <h1>AI Readiness Assessment</h1>
-    <div class="sub">Role-specific — Underwriting, Claims, Distribution</div>
+    <div class="sub">Insurance roles · trial build</div>
   </div>
+  <button class="homebtn hidden noprint" id="homeBtn" type="button">← Home</button>
 </header>
 
 <div class="wrap">
 
   <!-- ============ INTRO ============ -->
   <section id="s-intro" class="card">
-    <h2 class="title">How ready are you to build with AI in your role?</h2>
-    <p class="lede">Twelve questions about the work you actually do. Some ask where you honestly are on a
-    scale; some have a defensible right answer. At the end you get a score, a breakdown across six
-    capabilities, and a ranked list of what to learn and build next — specific to your role.</p>
-    <p class="meta">About 7 minutes. Nothing is sent anywhere — everything runs in this file, on your
-    machine. At the end you will get a short result code you can send back if you were asked to.</p>
+    <h2 class="title">How ready are you to work with AI?</h2>
+    <p class="lede">A practical assessment for insurance roles, in two steps. Start with <b>AI foundations</b>, then take the assessment for <b>your role</b>.</p>
 
-    <div class="rule"></div>
+    <div class="resume hidden" id="resumeBox">
+      <span id="resumeText"></span>
+      <button class="btn sm" id="resumeBtn" type="button">Resume</button>
+    </div>
 
-    <h3>Which best describes your role?</h3>
-    <div class="roles" id="roleList"></div>
+    <div class="steps">
+      <div class="stepcard" id="step1">
+        <div class="sthead">
+          <span class="stnum">1</span>
+          <div><div class="stt">AI foundations <span class="starthere">Start here</span></div>
+            <div class="std">Same for everyone. Decides whether you are <b>AI Literate</b> — the baseline for every tier.</div></div>
+          <span class="ststat" id="st1">Not started</span>
+        </div>
+        <div class="roles" id="foundList"></div>
+      </div>
 
-    <div class="idbox">
-      <label class="chk">
-        <input type="checkbox" id="identify">
-        <span>Add my name to the result code <span class="meta">— optional. Leave this off and your
-        result is anonymous; whoever collects the codes will see your role and scores but not who you are.</span></span>
-      </label>
-      <div class="idrow hidden" id="idFields">
-        <input type="text" id="nameIn" placeholder="Name" maxlength="60" autocomplete="off">
-        <input type="text" id="teamIn" placeholder="Team or business unit (optional)" maxlength="60" autocomplete="off">
+      <div class="stepjoin">then</div>
+
+      <div class="stepcard" id="step2">
+        <div class="sthead">
+          <span class="stnum">2</span>
+          <div><div class="stt">Your role</div>
+            <div class="std">Pick the one closest to your job. Decides whether you work at <b>AI Champion</b> or <b>AI Builder</b> level.</div></div>
+          <span class="ststat" id="st2">Not started</span>
+        </div>
+        <div class="roles" id="roleList"></div>
+        <p class="skipnote"><b>Confident in your AI literacy?</b> You can skip step 1 and start here. Your tier will show as provisional until you complete AI foundations.</p>
       </div>
     </div>
 
+    <p class="meta" style="margin-top:16px">At the end you see your tier, how it was decided, and a ranked learning path. Your answers stay on this page — nothing is sent anywhere — and results are kept only while the page is open.</p>
+
     <div class="nav">
-      <span class="meta" id="introHint">Choose a role to begin</span>
-      <button class="btn" id="startBtn" disabled>Start assessment</button>
+      <span class="meta" id="lenNote">Choose a step to begin</span>
+      <span style="display:flex;gap:10px;flex-wrap:wrap;justify-content:flex-end">
+        <button class="btn ghost hidden" id="viewBtn" type="button">View my results</button>
+        <button class="btn" id="startBtn" type="button" disabled>Start</button>
+      </span>
     </div>
   </section>
 
-  <!-- ============ QUESTIONS ============ -->
+  <!-- ============ QUIZ ============ -->
   <section id="s-quiz" class="card hidden">
     <div class="prog">
-      <div class="lbl"><span id="pCount"></span><span id="pRole"></span></div>
-      <div class="bar"><div class="fill" id="pFill" style="width:0%"></div></div>
+      <div class="lbl"><span id="pCount"></span><span id="pSec"></span></div>
+      <div class="bar"><div class="fill" id="pFill"></div></div>
     </div>
-    <div id="qChip" class="chip"></div>
+    <div id="secBanner" class="secban hidden"></div>
+    <span class="chip" id="qChip"></span>
     <p class="qtext" id="qText"></p>
-    <div class="opts" id="qOpts"></div>
+    <dl class="qnote hidden" id="qNote"></dl>
+    <div id="qBody"></div>
+    <p class="hint" id="qHint"></p>
     <div class="nav">
-      <button class="btn ghost sm" id="backBtn">Back</button>
-      <button class="btn" id="nextBtn" disabled>Next</button>
+      <button class="btn ghost" id="backBtn" type="button">Back</button>
+      <button class="btn" id="nextBtn" type="button" disabled>Next</button>
     </div>
-    <p class="hint">Tip: press <b>1</b>–<b>5</b> to choose, <b>Enter</b> to continue.</p>
   </section>
 
-  <!-- ============ RESULTS ============ -->
+  <!-- ============ RESULT ============ -->
   <section id="s-result" class="hidden">
     <div class="scorehead">
-      <div class="rl" id="rRole"></div>
-      <div style="margin:10px 0 0"><span class="big" id="rScore">0.0</span><span class="of"> / 5</span></div>
-      <div class="band" id="rBand"></div>
-      <p class="bd" id="rBandDesc"></p>
+      <div class="rl" id="rTrack">Your tier</div>
+      <div class="tier" id="rTier"></div>
+      <p class="bd" id="rTierDesc"></p>
+      <div class="badges" id="rBadges"></div>
     </div>
 
-    <div class="card">
-      <h3>Where this sits</h3>
-      <div class="scale">
-        <div class="track"></div>
-        <div class="mk you" id="youMark"><span id="youLbl">You</span><i></i></div>
-        <div class="ends"><span>1.0</span><span>5.0</span></div>
+    <div class="card noprint" style="margin-bottom:22px" id="rFlowCard">
+      <h3>Your two steps</h3>
+      <div class="flow" id="rFlow"></div>
+      <div class="flowstate" id="rFlowState"></div>
+    </div>
+
+    <div class="card" style="margin-bottom:22px">
+      <h3>How your tier was decided</h3>
+      <div id="rCrit"></div>
+      <p class="note">Thresholds in this trial are provisional. They will be recalibrated after the pilot so that roughly 3–5% of people land as AI Champions and about 1% as AI Builders.</p>
+    </div>
+
+    <div class="card" style="margin-bottom:22px">
+      <h3>Your scores</h3>
+      <div id="rFound"></div>
+      <div id="rPracticeWrap">
+        <div class="rule"></div>
+        <p class="meta" style="margin-bottom:4px"><span id="rPracticeName"></span> — weighted average <b id="rPractice"></b> out of 5</p>
+        <div id="rDims"></div>
       </div>
-      <p class="note" id="baselineNote"></p>
-
-      <div class="rule"></div>
-
-      <h3>Your six capabilities</h3>
-      <p class="meta" style="margin-bottom:16px">Weighting shows how much each capability counts toward
-      the overall score for your role — it differs by role.</p>
-      <div id="rDims"></div>
-      <p class="note" id="strongNote"></p>
     </div>
 
-    <div class="card" style="margin-top:22px">
-      <h3>What to learn next</h3>
-      <p class="meta" style="margin-bottom:6px">Ranked by how far you are from strong, weighted by how
-      much each capability matters in your role. Start at the top.</p>
+    <div class="card" style="margin-bottom:22px">
+      <h3>Your learning path</h3>
+      <p class="meta" id="rPathNote"></p>
       <div id="rPath"></div>
     </div>
 
-    <div class="card noprint" style="margin-top:22px">
-      <div class="codebox">
-        <h3>Your result code</h3>
-        <p>If someone asked you to take this, copy the code below and send it back. It contains your
-        role, your answers and the date — nothing else<span id="codeIdNote"></span>.</p>
-        <textarea id="codeOut" readonly onclick="this.select()"></textarea>
-        <div class="btnrow">
-          <button class="btn sm" id="copyBtn">Copy code</button>
-          <button class="btn ghost sm" id="printBtn">Save as PDF</button>
-          <button class="btn ghost sm" id="againBtn">Start over</button>
-          <span class="copied hidden" id="copiedMsg">Copied</span>
-        </div>
-      </div>
+    <div class="card" style="margin-bottom:22px">
+      <h3>Question-by-question review</h3>
+      <p class="meta">Every question you answered — what you chose, the strongest answer, and why.</p>
+      <div id="rReview"></div>
     </div>
+
+    <div class="nav noprint" style="justify-content:flex-start">
+      <button class="btn" id="printBtn" type="button">Save as PDF</button>
+      <button class="btn ghost" id="restartBtn" type="button">Start over</button>
+    </div>
+    <p class="foot">Trial build</p>
   </section>
 
 </div>
 
 <script>
-/* ===== engine (identical to the tested build) ===== */
-/* ============================================================
-   AI Readiness Assessment — Insurance Roles
-   Shared engine: question bank, scoring, learning paths, codec.
-   Used by both the assessment and the aggregator.
-   ============================================================ */
+var BASE = {"DIMENSIONS":[{"id":"framing","name":"Task framing & prompting","short":"Framing"},{"id":"decomp","name":"Workflow decomposition","short":"Decomposition"},{"id":"build","name":"Agentic build & tooling","short":"Build"},{"id":"context","name":"Data & context grounding","short":"Context"},{"id":"controls","name":"Risk, controls & human-in-the-loop","short":"Controls"},{"id":"adoption","name":"Adoption & enablement","short":"Adoption"}],"ROLES":[{"id":"uw","name":"Underwriting","blurb":"Risk selection, pricing, referral and renewal work."},{"id":"cl","name":"Claims","blurb":"FNOL, triage, adjusting, coverage and settlement work."},{"id":"ds","name":"Distribution / Sales","blurb":"Broker and client management, new business and retention."}],"WEIGHTS":{"uw":{"framing":1,"decomp":1.1,"build":0.9,"context":1.1,"controls":1.3,"adoption":0.6},"cl":{"framing":1,"decomp":1.2,"build":0.9,"context":1,"controls":1.2,"adoption":0.7},"ds":{"framing":1.2,"decomp":1,"build":0.8,"context":0.9,"controls":0.9,"adoption":1.2}},"GUIDANCE":{"framing":[{"h":"Learn to specify, not to ask","w":"Most weak output traces back to an under-specified request, not a weak model. The move is to state the role, the inputs, the judgment you want, the format, and the thresholds that define words like \"material\" or \"concerning\".","a":["Take one request that disappointed you and rewrite it with an explicit output format and an explicit definition of every subjective word in it.","Learn the difference between asking for an answer and asking for reasoning you can check."]},{"h":"Make your prompts reusable assets","w":"You already get useful output. The step up is turning the good ones into templates with slots, so quality does not depend on how well you happened to phrase it that day.","a":["Convert your three best requests into templates with clearly marked slots for the variable parts.","Add two worked examples from your own past work to each template — examples move output quality more than extra instructions."]},{"h":"Test your prompts like you would test a model","w":"At this level the risk is silent drift: a template that works on typical cases and fails quietly on the edge. Treat prompts as things that need a test set.","a":["Assemble five past cases where you already know the right answer and run your template against all five whenever you change it.","Write down the failure modes you find, and publish them alongside the template so others inherit the warning."]}],"decomp":[{"h":"Learn to see your work as steps","w":"Before anything can be automated it has to be describable. The skill is separating what is genuinely judgment from the retrieval, formatting and chasing that surrounds it — usually most of the elapsed time.","a":["Write out one end-to-end process you own as a numbered list of steps, with the input and output of each.","Mark each step as rules-based, judgment, or waiting-on-someone. The last category is where the easy wins are."]},{"h":"Find the seams an agent can work in","w":"You can describe the steps. Now find the boundaries: the points where a step needs to reach outside itself for a document, a system record, or a person.","a":["On your process map, mark every point where information has to be fetched from somewhere else — those are tool calls.","Identify one step that is high-volume, low-judgment and reversible. That is your first build."]},{"h":"Design for failure, not just flow","w":"A mapped process assumes everything works. The next level is knowing what each step does when its input is missing, stale, contradictory or wrong.","a":["For each step in a flow you have built, write down what it should do when its input is bad — and make sure it does that.","Map the blast radius of each step: if this one is silently wrong, who finds out, and when?"]}],"build":[{"h":"Build one thing, end to end","w":"The gap between understanding agentic flows and having built one is the single biggest driver of a low score here. It closes only by building something small and real.","a":["Build one assistant that does a single repetitive task you personally do every week. Keep it to one step.","Use it for two weeks on real work and note every time it fails — that list is your actual curriculum."]},{"h":"Chain steps and handle the joins","w":"One step working is not a flow. The engineering is in the joins: passing output between steps, validating it on the way through, and deciding what happens when a step returns nothing useful.","a":["Extend your single-step helper so one step’s output becomes the next step’s input, with a validation check between them.","Deliberately feed it a bad input and watch what happens. If it fails silently, that is the bug to fix first."]},{"h":"Make it robust enough for someone else","w":"Something you can operate is not something a colleague can operate. Robustness, error messages and sane defaults are what separate a demo from a tool.","a":["Hand your flow to one colleague with no explanation and watch where they get stuck — do not help them.","Add explicit failure paths: what the flow does when a source is unavailable, a field is empty, or confidence is low."]}],"context":[{"h":"Stop working from memory","w":"AI output is only as good as what it was actually given. Working from memory or a single pasted email is the most common cause of confident, wrong answers.","a":["Before your next AI-assisted task, deliberately assemble the documents it should work from and say which one wins if they disagree.","Ask for the source of each claim in the output, then spot-check two of them."]},{"h":"Bring in the authoritative material","w":"You assemble documents well. The step up is grounding in our own reference material — the guides, wordings and rules that define what a correct answer is here rather than in general.","a":["Identify the two or three reference documents that define correctness in your role and start including them by default.","Set explicit precedence rules: which source outranks which, and how recency is handled."]},{"h":"Make grounding verifiable","w":"At this level the goal is output someone else can audit: every material statement traceable to a named source, so a reviewer can check rather than trust.","a":["Require citation-by-default in anything you build — statement, source document, date.","Build a contradiction check: where two grounded sources disagree, the flow should surface it rather than silently pick one."]}],"controls":[{"h":"Learn where the exposure actually is","w":"This is the highest-weighted dimension for most insurance roles, and the most common blind spot. Not every step carries equal risk — knowing which ones bind the company is the foundation of everything else.","a":["List the outputs you produce that a regulator, a court, or a policyholder could later read. Those need human sign-off, always.","Learn the three failure modes that matter here: confident fabrication, silent omission, and drift between a decision and how it gets described."]},{"h":"Place checkpoints deliberately","w":"Reviewing everything is not a control strategy — it does not scale and attention degrades. The skill is placing checks where harm is possible and letting the rest run.","a":["For one flow, decide which steps need human sign-off based on reversibility and exposure, and write down why.","Distinguish approving a decision from approving the text that communicates it — they are different controls, and the second is routinely missed."]},{"h":"Make controls auditable and teachable","w":"Your own judgment about controls is good. The next level is making it explicit enough that others can apply it, and evidenced enough to survive a review.","a":["Write the control design down: what is checked, by whom, at which step, and what gets logged.","Take one flow through a conversation with risk, compliance or legal before it scales — early, not after."]}],"adoption":[{"h":"Get your own practice solid first","w":"You cannot lift a team from a standing start. At this level the most useful thing is a working habit of your own, plus honesty about what has not worked.","a":["Use AI on real work daily for four weeks and keep a short log of wins and failures.","Find one person nearby who is further along and ask to see what they actually built."]},{"h":"Share the asset, not the anecdote","w":"Telling colleagues that AI is useful changes nothing. Handing them a template that works on their next task changes something immediately.","a":["Package one thing you use into something a colleague can run without you in the room.","Run a 20-minute session on one specific task rather than a general overview — specificity is what converts sceptics."]},{"h":"Build the mechanism, not just the moment","w":"One-off enthusiasm fades. What persists is a routine: somewhere the team shares what worked, what broke, and what is now the standard way of doing something.","a":["Set up a recurring, low-ceremony forum where people bring one thing that worked and one that failed.","Share your failures publicly — teams adopt faster when the risks are discussed openly than when only successes are shown."]}]},"ROLE_ACTION":{"uw":{"framing":["Rewrite your standard \"assess this submission\" request to name the class, the appetite thresholds, and the exact referral-summary format you want back.","Turn your best submission-review request into a template with slots for class, TIV band and occupancy — with two of your own past referral summaries as examples.","Run your submission template against five accounts you already declined and five you wrote, and record where it disagrees with the actual outcome."],"decomp":["Write out submission-to-quote for one class as numbered steps, marking which need underwriting judgment and which are retrieval or chasing.","Mark every point in submission clearance where information has to be fetched — loss runs, prior-term terms, SOV data — and pick the highest-volume one to build.","For your clearance flow, define what happens when the SOV is unreadable, the loss runs are missing, or the broker data contradicts the prior term."],"build":["Build a single-step helper that extracts and normalises the key data points from an SOV into the format you actually use.","Chain SOV extraction into a completeness check that flags any missing or implausible field before anything downstream touches it.","Hand your clearance flow to another underwriter cold, and add the failure paths their first three attempts expose."],"context":["Before your next referral, assemble the submission, the survey and the prior-term file deliberately, and state that inspection findings outrank broker representations.","Bring your appetite guide and referral criteria into the flow by default, so \"outside appetite\" is grounded in our rules rather than general market logic.","Require your submission summaries to cite the source document and date for every risk characteristic they assert."],"controls":["List every underwriting output a regulator or a court could read — declinations, coverage confirmations, rating rationale — and mark them as always human-signed.","On your clearance flow, separate approving the decision from approving the letter that states the reason. Put a distinct check on the second.","Write down the control design for one flow and walk it through with risk or compliance before anyone else uses it."],"adoption":["Use AI on live submissions daily for four weeks and log what it got right and what it got dangerously wrong.","Package your submission template so another underwriter can use it on their next account without you explaining it.","Start a monthly underwriting forum where people bring one thing that worked and one that failed on live accounts."]},"cl":{"framing":["Rewrite your standard \"summarise this claim\" request to name the source document, whose account you want, and the exact summary format.","Turn your best claim-review request into a template with slots for line of business and claim stage — with two of your own closed-file summaries as examples.","Run your claim template against five closed files where you know the outcome and record where its read diverges from what actually happened."],"decomp":["Write out FNOL-to-assignment as numbered steps, marking which need adjuster judgment and which are extraction, lookup or chasing.","Mark every point in triage where information has to be fetched — policy in force, prior claims, coverage wording — and pick the highest-volume one to build.","For your triage flow, define what happens when the FNOL is ambiguous, the policy system is down, or severity confidence is low."],"build":["Build a single-step helper that pulls loss date, location, cause and reported severity out of free-text FNOL into a clean structure.","Chain FNOL extraction into a severity classifier, with a confidence gate that diverts anything uncertain to a human queue.","Hand your triage flow to another adjuster cold, and add the failure paths their first three attempts expose."],"context":["Before your next coverage question, assemble the file notes, the policy wording and the correspondence deliberately, and state that the wording is authoritative.","Bring the actual policy wording and handling standards into the flow by default, so coverage statements are grounded in the contract rather than in general usage.","Require your claim summaries to name the clause relied on and the document and date for every material fact."],"controls":["List every claims output a regulator, a court or a policyholder could read — denials, reservations of rights, coverage positions — and mark them as always human-signed.","On your correspondence flow, separate approving the coverage decision from approving the letter that states the rationale. Put a distinct check on the second.","Write down the control design for one flow and walk it through with claims legal or compliance before anyone else uses it."],"adoption":["Use AI on live files daily for four weeks and log what it got right and what it got dangerously wrong.","Package your claim-summary template so another adjuster can use it on their next file without you explaining it.","Start a monthly claims forum where people bring one thing that worked and one that failed on live files."]},"ds":{"framing":["Rewrite your standard meeting-prep request to name the relationship history, the products we actually sell, and the exact brief format you want.","Turn your best meeting-prep request into a template with slots for broker, segment and renewal stage — with two briefs that actually worked as examples.","Run your prep template across five brokers with very different books and record where its recommendations stop making sense."],"decomp":["Write out your renewal-retention path as numbered steps, marking which need relationship judgment and which are data pulls or preparation.","Mark every point in renewal prep where information has to be fetched — CRM, loss ratio, prior notes, appetite — and pick the highest-volume one to build.","For your prep flow, define what happens when the data pull is partial, the CRM contradicts the underwriter, or the notes are stale."],"build":["Build a single-step helper that turns your CRM record and last meeting notes into a consistent one-page pre-meeting brief.","Chain the data pull into the brief generation, with a completeness gate that stops and flags rather than drafting on partial data.","Hand your prep flow to another account manager cold, and add the failure paths their first three attempts expose."],"context":["Before your next client brief, assemble the CRM record, the underwriter notes and the last correspondence, and state which source wins when they disagree.","Bring our product guide and pricing into the flow by default, so growth suggestions stay inside the products we actually sell.","Require your client briefs to cite a source and a date for every claim about renewal status, performance or coverage."],"controls":["List every output of yours that reaches a client or broker in writing, and treat all of it as requiring individual human review.","On your outreach flow, separate approving the recipient list from approving each message’s content. The second is the control that is usually missing.","Write down the control design for one client-facing flow and walk it through with compliance before it scales beyond you."],"adoption":["Use AI on live account prep daily for four weeks and log what sharpened the meeting and what would have embarrassed you.","Package your meeting-prep brief so another account manager can run it before their next renewal without you explaining it.","Start a monthly distribution forum where people bring one thing that worked and one that failed in front of a client."]}},"Q":{"ds":[{"d":"framing","type":"sc","q":"","o":null},{"d":"framing","type":"jd","q":"","o":null},{"d":"decomp","type":"sort","q":"","o":null},{"d":"decomp","type":"jd","q":"You are breaking “prepare for a renewal meeting with a key broker” into steps an agent could run. Which of these is the wrong thing to hand over as a single step?","o":[["“Decide what pricing concession to offer” — it fuses analysis with a commitment that carries authority and sets precedent.",5],["“Pull the broker’s loss ratio and premium trend from the reporting system” — it depends on a system that may be unavailable.",3],["“Summarise the last four meeting notes” — the notes are inconsistent in quality.",2],["“Draft the agenda” — the agenda should reflect my read of the relationship.",1]]},{"d":"build","type":"sc","q":"An agentic flow is a sequence where AI calls a tool, uses what comes back, and moves to the next step. Where are you with building one?","o":[["I've heard the term but couldn't describe one.",1],["I understand the idea and have seen demos, but I haven't built anything.",2],["I've built a single-step assistant or custom helper that someone else could use.",3],["I've built a multi-step flow where one step's output feeds the next, and debugged it when it broke.",4],["I've shipped a flow that colleagues use on live work, with real tool calls and error handling.",5]]},{"d":"build","type":"jd","q":"Your flow pulls broker performance data and then drafts talking points. When the data pull comes back partial, the drafting step still produces confident talking points. The best fix is to —","o":[["Gate the drafting step on data completeness — if the pull is partial, stop and flag rather than draft.",5],["Instruct the drafting step to hedge whenever the data looks thin.",3],["Retry the data pull several more times before drafting.",2],["Note in the drafting instructions that data may sometimes be incomplete.",1]]},{"d":"context","type":"sc","q":"When you use AI on an account or a broker relationship, what do you actually give it to work from?","o":[["Whatever is in the conversation — I mostly ask from memory.",1],["I paste in the recent email chain or whatever the CRM shows.",2],["I assemble the relevant material deliberately and tell it which source is authoritative.",3],["I bring in our actual reference material — appetite guide, pricing bands, prior meeting notes — not just the CRM record.",4],["I work from a grounded setup that pulls from approved sources and cites which record each statement came from.",5]]},{"d":"context","type":"jd","q":"The CRM says the broker’s largest account renewed with us in March. The underwriter’s notes say it moved to a competitor in February. An AI-drafted brief repeats the CRM version — to the client. What prevents this whole class of error?","o":[["Set source precedence and recency rules up front, and require the brief to cite a source and a date for each claim it makes.",5],["Ask it to flag anything that looks contradictory between sources.",3],["Work only from the underwriter’s notes and ignore the CRM.",2],["Proofread the brief carefully before the meeting.",1]]},{"d":"controls","type":"sc","q":"","o":null},{"d":"controls","type":"jd","q":"A flow drafts personalised client outreach and sends it once you approve the recipient list. The highest-risk gap is —","o":[["Approving a list is not approving the content — each message contains generated claims about coverage and performance that nobody reviewed individually.",5],["The degree of personalisation may feel intrusive to some clients.",3],["Messages may go out at an unhelpful time of day.",2],["The tone may drift off-brand.",1]]},{"d":"adoption","type":"sc","q":"Have you taught anyone else on your team to use AI in their distribution work?","o":[["No, and I wouldn't know where to start.",1],["I've mentioned things that worked for me, informally.",2],["I've walked a colleague through a specific technique or handed over something that worked.",3],["I've shared reusable assets — templates or flows — that other people now use on live work.",4],["I run or contribute to a regular forum where the team shares what is working and what failed.",5]]},{"d":"adoption","type":"sc","q":"Your team is sceptical that AI has any place in relationship-led selling. Your honest response is —","o":[["Privately, I'd probably agree with them.",1],["I'd say the technology will improve over time.",2],["I'd separate the relationship itself from all the preparation around it, and point at the second one.",3],["I'd show a concrete before-and-after on a real account where prep got sharper without the relationship changing hands.",4],["I'd show that, plus the case where it got something wrong in front of a client and the guardrail we added — that is what actually earns trust.",5]]}],"cl":[{"d":"framing","type":"sc","q":"You want AI help getting on top of a complex claim file. Which best describes how you would set the request up?","o":[["I'd type “summarise this claim” and see what comes back.",1],["I'd paste the file notes in and ask follow-up questions until the answer is useful.",2],["I'd write a structured request: line of business, what I need assessed, and the output format I need.",3],["I'd write a structured request and include two examples of a good claim summary from our own closed files.",4],["I keep a reusable template for this claim type that I've tested against files where I already know the outcome — and I know where it fails.",5]]},{"d":"framing","type":"jd","q":"You ask for “a summary of the claimant’s account of the accident.” The output blends the claimant’s statement with the adjuster’s later file notes into one smooth narrative. The request is most at fault because —","o":[["It never said whose account, from which document — so the model merged sources that need to stay separated.",5],["The file notes should have been supplied in strict chronological order.",3],["Summarising claim files is not a sound use of these tools.",2],["The model hallucinated — nothing in the request could have prevented it.",1]]},{"d":"decomp","type":"sc","q":"Think about the FNOL-to-assignment path you actually work in. How far have you got in mapping it into steps something automated could run?","o":[["I haven't thought about my work that way.",1],["I could talk through the steps, but I have never written them down.",2],["I've written the steps out and can say which are rules-based and which need judgment.",3],["I've written them out and identified the specific points where an agent would have to call a system or open a document to continue.",4],["I've mapped it, built at least one step as a working flow, and I know which handoffs break.",5]]},{"d":"decomp","type":"jd","q":"You are breaking “triage an incoming FNOL” into steps an agent could run. Which of these is the wrong thing to hand over as a single step?","o":[["“Determine whether coverage applies and set the reserve” — it fuses policy interpretation with a financial commitment in one opaque step.",5],["“Check whether the policy was in force on the loss date” — the policy system may be unavailable.",3],["“Extract loss date, location and cause from the notification” — free-text FNOL is messy.",2],["“Route it to the right adjuster queue” — the routing rules change frequently.",1]]},{"d":"build","type":"sc","q":"An agentic flow is a sequence where AI calls a tool, uses what comes back, and moves to the next step. Where are you with building one?","o":[["I've heard the term but couldn't describe one.",1],["I understand the idea and have seen demos, but I haven't built anything.",2],["I've built a single-step assistant or custom helper that someone else could use.",3],["I've built a multi-step flow where one step's output feeds the next, and debugged it when it broke.",4],["I've shipped a flow that colleagues use on live work, with real tool calls and error handling.",5]]},{"d":"build","type":"jd","q":"Your flow reads FNOL text, classifies severity, and routes the claim. On ambiguous notifications the classifier reports low confidence — but the flow routes anyway. The best fix is to —","o":[["Send low-confidence cases to a human triage queue instead of forcing a classification.",5],["Re-work the classifier so it returns low confidence less often.",3],["Default every ambiguous case to the high-severity queue to be safe.",2],["Add an instruction telling the classifier to be more decisive.",1]]},{"d":"context","type":"sc","q":"When you use AI on a claim, what do you actually give it to work from?","o":[["Whatever is in the conversation — I mostly ask from memory.",1],["I paste in the file notes or the relevant correspondence.",2],["I assemble the relevant documents deliberately and tell it which one is authoritative.",3],["I bring in our actual reference material — the policy wording, reserving guidance, handling standards — not just the file.",4],["I work from a grounded setup that pulls from approved sources and cites which document each statement came from.",5]]},{"d":"context","type":"jd","q":"The file says “water damage.” The policy wording treats flood and escape of water very differently. The AI summary calls the loss covered. What prevents this whole class of error?","o":[["Ground the flow in the actual policy wording as the authoritative source and require it to name the clause it relied on.",5],["Ask it to be more careful whenever coverage language is involved.",3],["Supply a glossary of claims terminology alongside the file.",2],["Have the adjuster verify coverage after the summary is produced.",1]]},{"d":"controls","type":"sc","q":"Where does the human check sit in an AI-assisted claims workflow you would be willing to run?","o":[["I haven't had to think about that yet.",1],["I read everything it produces before I use any of it.",2],["I review everything, and I can say which outputs carry regulatory or policyholder exposure.",3],["I place checkpoints deliberately on the steps that commit the company, and let lower-stakes steps run unattended.",4],["I design the checkpoints up front from where the flow could cause harm, and I keep a record of what was reviewed.",5]]},{"d":"controls","type":"jd","q":"A flow drafts and issues denial correspondence once the adjuster has approved the coverage decision. The highest-risk gap is —","o":[["The denial rationale in the letter is generated text and can drift from the actual coverage basis — a regulatory and bad-faith exposure, even though the decision was approved.",5],["The adjuster may approve without reading the letter closely.",3],["The letter could go to a stale address on file.",2],["The letter may read as unsympathetic to the claimant.",1]]},{"d":"adoption","type":"sc","q":"Have you taught anyone else on your team to use AI in their claims work?","o":[["No, and I wouldn't know where to start.",1],["I've mentioned things that worked for me, informally.",2],["I've walked a colleague through a specific technique or handed over something that worked.",3],["I've shared reusable assets — templates or flows — that other people now use on live work.",4],["I run or contribute to a regular forum where the team shares what is working and what failed.",5]]},{"d":"adoption","type":"sc","q":"Your team is sceptical that AI can handle claims judgment. Your honest response is —","o":[["Privately, I'd probably agree with them.",1],["I'd say the technology will improve over time.",2],["I'd separate the judgment itself from all the work surrounding the judgment, and point at the second one.",3],["I'd show a concrete before-and-after on a real file where it saved time without touching the decision.",4],["I'd show that, plus the case where it got something wrong and the guardrail we added — that is what actually earns trust.",5]]}],"uw":[{"d":"framing","type":"sc","q":"You want AI help assessing a mid-market property submission. Which best describes how you would set the request up?","o":[["I'd type “analyse this submission” and see what comes back.",1],["I'd paste the submission in and ask follow-up questions until the answer is useful.",2],["I'd write a structured request: class of business, what I want assessed, and the output format I need.",3],["I'd write a structured request and include two worked examples of a good referral summary from our own files.",4],["I keep a reusable template for this class that I've tested against accounts where I already know the outcome — and I know where it fails.",5]]},{"d":"framing","type":"jd","q":"You ask an AI to “summarise the loss history and flag anything concerning.” It returns a fluent summary that describes a four-year-old $2M fire loss as “not material.” The request itself is most at fault because —","o":[["“Concerning” was never defined. No threshold, no reference to our appetite — so the model supplied its own definition.",5],["The loss history should have been handed over as structured data rather than prose.",3],["A more capable model is needed before this kind of judgment is reliable.",2],["Nothing is wrong with the request — the model simply made a mistake.",1]]},{"d":"decomp","type":"sc","q":"Think about the submission-to-quote path you actually work in. How far have you got in mapping it into steps something automated could run?","o":[["I haven't thought about my work that way.",1],["I could talk through the steps, but I have never written them down.",2],["I've written the steps out and can say which are rules-based and which need judgment.",3],["I've written them out and identified the specific points where an agent would have to call a system or open a document to continue.",4],["I've mapped it, built at least one step as a working flow, and I know which handoffs break.",5]]},{"d":"decomp","type":"jd","q":"You are breaking “clear a renewal submission” into steps an agent could run. Which of these is the wrong thing to hand over as a single step?","o":[["“Decide whether to renew, and on what terms” — it fuses retrieval, analysis and an authority-bound decision into one opaque step.",5],["“Pull the prior-term loss runs from the policy system” — it depends on a system that may be unavailable.",3],["“Extract TIV and occupancy from the SOV” — extraction is unreliable on messy spreadsheets.",2],["“Draft the referral email” — drafting should stay with the underwriter.",1]]},{"d":"build","type":"sc","q":"An agentic flow is a sequence where AI calls a tool, uses what comes back, and moves to the next step. Where are you with building one?","o":[["I've heard the term but couldn't describe one.",1],["I understand the idea and have seen demos, but I haven't built anything.",2],["I've built a single-step assistant or custom helper that someone else could use.",3],["I've built a multi-step flow where one step's output feeds the next, and debugged it when it broke.",4],["I've shipped a flow that colleagues use on live work, with real tool calls and error handling.",5]]},{"d":"build","type":"jd","q":"Your flow extracts data from an SOV and then prices it. On messy SOVs the extraction step occasionally returns an empty field, and the pricing step silently treats it as zero. The best fix is to —","o":[["Put a validation gate between the two steps that fails loudly on empty or implausible values and stops the flow.",5],["Improve the extraction step so it returns empty fields less often.",3],["Have the pricing step default any missing value to the class average.",2],["Add a line to the pricing instructions telling it not to treat blanks as zero.",1]]},{"d":"context","type":"sc","q":"When you use AI on an account, what do you actually give it to work from?","o":[["Whatever is in the conversation — I mostly ask from memory.",1],["I paste in the submission or the relevant email chain.",2],["I assemble the relevant documents deliberately and tell it which one is authoritative.",3],["I bring in our actual reference material — appetite guide, rating rules, referral criteria — not just the account file.",4],["I work from a grounded setup that pulls from approved sources and cites which document each statement came from.",5]]},{"d":"context","type":"jd","q":"Two sources disagree: the broker submission says the risk is sprinklered, the 2023 engineering survey says the sprinklers were out of service. The AI summary reports it as sprinklered. What prevents this whole class of error?","o":[["Set source precedence in the setup — inspection findings outrank broker representation — and require the output to cite its source for each fact.",5],["Ask the model to check for contradictions between documents before it summarises.",3],["Give it only the engineering survey.",2],["Have the underwriter read the survey and correct the summary afterwards.",1]]},{"d":"controls","type":"sc","q":"Where does the human check sit in an AI-assisted underwriting workflow you would be willing to run?","o":[["I haven't had to think about that yet.",1],["I read everything it produces before I use any of it.",2],["I review everything, and I can say which outputs carry regulatory or authority exposure.",3],["I place checkpoints deliberately on the steps that bind the company, and let lower-stakes steps run unattended.",4],["I design the checkpoints up front from where the flow could cause harm, and I keep a record of what was reviewed.",5]]},{"d":"controls","type":"jd","q":"A flow drafts declination letters and issues them once the underwriter has approved the declination decision. The highest-risk gap is —","o":[["The stated reason in the letter is generated text and can drift from the actual basis for declination — a regulatory exposure, even though the decision was approved.",5],["The underwriter may approve without reading the letter carefully.",3],["The letter could go to a stale broker address.",2],["The tone may not match how we usually write.",1]]},{"d":"adoption","type":"sc","q":"Have you taught anyone else on your team to use AI in their underwriting work?","o":[["No, and I wouldn't know where to start.",1],["I've mentioned things that worked for me, informally.",2],["I've walked a colleague through a specific technique or handed over something that worked.",3],["I've shared reusable assets — templates or flows — that other people now use on live work.",4],["I run or contribute to a regular forum where the team shares what is working and what failed.",5]]},{"d":"adoption","type":"sc","q":"Your team is sceptical that AI can handle underwriting judgment. Your honest response is —","o":[["Privately, I'd probably agree with them.",1],["I'd say the technology will improve over time.",2],["I'd separate the judgment itself from all the work surrounding the judgment, and point at the second one.",3],["I'd show a concrete before-and-after on a real account where it saved time without touching the decision.",4],["I'd show that, plus the case where it got something wrong and the guardrail we added — that is what actually earns trust.",5]]}]}};
+/* engine2 — insurance AI readiness, trial.
+   Four tracks: AI foundations only (the Literate check), or foundations + role practice
+   for Distribution / Sales, Claims or Underwriting. Tier verdict: AI Literate / AI Champion /
+   AI Builder. Requires base.js (generated) to be loaded first. */
 
-var ENGINE_VERSION = 1;
-
-var DIMENSIONS = [
-  { id: 'framing',  name: 'Task framing & prompting',        short: 'Framing' },
-  { id: 'decomp',   name: 'Workflow decomposition',          short: 'Decomposition' },
-  { id: 'build',    name: 'Agentic build & tooling',         short: 'Build' },
-  { id: 'context',  name: 'Data & context grounding',        short: 'Context' },
-  { id: 'controls', name: 'Risk, controls & human-in-the-loop', short: 'Controls' },
-  { id: 'adoption', name: 'Adoption & enablement',           short: 'Adoption' }
-];
-
-var ROLES = [
-  { id: 'uw', name: 'Underwriting',       blurb: 'Risk selection, pricing, referral and renewal work.' },
-  { id: 'cl', name: 'Claims',             blurb: 'FNOL, triage, adjusting, coverage and settlement work.' },
-  { id: 'ds', name: 'Distribution / Sales', blurb: 'Broker and client management, new business and retention.' }
-];
-
-/* Role weights per dimension. Each role's weights sum to 6.0 so the
-   weighted mean stays on the same 1-5 scale across roles. */
-var WEIGHTS = {
-  uw: { framing: 1.0, decomp: 1.1, build: 0.9, context: 1.1, controls: 1.3, adoption: 0.6 },
-  cl: { framing: 1.0, decomp: 1.2, build: 0.9, context: 1.0, controls: 1.2, adoption: 0.7 },
-  ds: { framing: 1.2, decomp: 1.0, build: 0.8, context: 0.9, controls: 0.9, adoption: 1.2 }
-};
-
-var BANDS = [
-  { min: 1.00, max: 2.249, name: 'Aware',    desc: 'You know these tools exist and have tried them. The gap is practice on real work, not more theory.' },
-  { min: 2.25, max: 3.249, name: 'Applying', desc: 'You get useful output from AI on your own tasks. The gap is structure — turning ad-hoc use into something repeatable.' },
-  { min: 3.25, max: 4.249, name: 'Building', desc: 'You build multi-step work, not just prompts. The gap is robustness and getting others onto what you have built.' },
-  { min: 4.25, max: 5.00,  name: 'Leading',  desc: 'You ship things colleagues use. The gap is scale — standards, controls and lifting the people around you.' }
-];
-
-/* ------------------------------------------------------------
-   QUESTION BANK — 12 per role, 2 per dimension.
-   type 'sc' = scenario with behavioural anchors (scores 1-5)
-   type 'jd' = judgment item, one defensible best answer
-              (5 = best, 3 = partially right, 2 = plausible but wrong, 1 = wrong)
-   Option order is authored; the UI shuffles judgment items at runtime.
-   ------------------------------------------------------------ */
-
-var QUESTIONS = {
-
-  /* ================= UNDERWRITING ================= */
-  uw: [
-    { d: 'framing', type: 'sc',
-      q: 'You want AI help assessing a mid-market property submission. Which best describes how you would set the request up?',
-      o: [
-        ["I'd type “analyse this submission” and see what comes back.", 1],
-        ["I'd paste the submission in and ask follow-up questions until the answer is useful.", 2],
-        ["I'd write a structured request: class of business, what I want assessed, and the output format I need.", 3],
-        ["I'd write a structured request and include two worked examples of a good referral summary from our own files.", 4],
-        ["I keep a reusable template for this class that I've tested against accounts where I already know the outcome — and I know where it fails.", 5]
-      ]},
-    { d: 'framing', type: 'jd',
-      q: 'You ask an AI to “summarise the loss history and flag anything concerning.” It returns a fluent summary that describes a four-year-old $2M fire loss as “not material.” The request itself is most at fault because —',
-      o: [
-        ['“Concerning” was never defined. No threshold, no reference to our appetite — so the model supplied its own definition.', 5],
-        ['The loss history should have been handed over as structured data rather than prose.', 3],
-        ['A more capable model is needed before this kind of judgment is reliable.', 2],
-        ['Nothing is wrong with the request — the model simply made a mistake.', 1]
-      ]},
-    { d: 'decomp', type: 'sc',
-      q: 'Think about the submission-to-quote path you actually work in. How far have you got in mapping it into steps something automated could run?',
-      o: [
-        ["I haven't thought about my work that way.", 1],
-        ['I could talk through the steps, but I have never written them down.', 2],
-        ["I've written the steps out and can say which are rules-based and which need judgment.", 3],
-        ["I've written them out and identified the specific points where an agent would have to call a system or open a document to continue.", 4],
-        ["I've mapped it, built at least one step as a working flow, and I know which handoffs break.", 5]
-      ]},
-    { d: 'decomp', type: 'jd',
-      q: 'You are breaking “clear a renewal submission” into steps an agent could run. Which of these is the wrong thing to hand over as a single step?',
-      o: [
-        ['“Decide whether to renew, and on what terms” — it fuses retrieval, analysis and an authority-bound decision into one opaque step.', 5],
-        ['“Pull the prior-term loss runs from the policy system” — it depends on a system that may be unavailable.', 3],
-        ['“Extract TIV and occupancy from the SOV” — extraction is unreliable on messy spreadsheets.', 2],
-        ['“Draft the referral email” — drafting should stay with the underwriter.', 1]
-      ]},
-    { d: 'build', type: 'sc',
-      q: 'An agentic flow is a sequence where AI calls a tool, uses what comes back, and moves to the next step. Where are you with building one?',
-      o: [
-        ["I've heard the term but couldn't describe one.", 1],
-        ["I understand the idea and have seen demos, but I haven't built anything.", 2],
-        ["I've built a single-step assistant or custom helper that someone else could use.", 3],
-        ["I've built a multi-step flow where one step's output feeds the next, and debugged it when it broke.", 4],
-        ["I've shipped a flow that colleagues use on live work, with real tool calls and error handling.", 5]
-      ]},
-    { d: 'build', type: 'jd',
-      q: 'Your flow extracts data from an SOV and then prices it. On messy SOVs the extraction step occasionally returns an empty field, and the pricing step silently treats it as zero. The best fix is to —',
-      o: [
-        ['Put a validation gate between the two steps that fails loudly on empty or implausible values and stops the flow.', 5],
-        ['Improve the extraction step so it returns empty fields less often.', 3],
-        ['Have the pricing step default any missing value to the class average.', 2],
-        ['Add a line to the pricing instructions telling it not to treat blanks as zero.', 1]
-      ]},
-    { d: 'context', type: 'sc',
-      q: 'When you use AI on an account, what do you actually give it to work from?',
-      o: [
-        ["Whatever is in the conversation — I mostly ask from memory.", 1],
-        ['I paste in the submission or the relevant email chain.', 2],
-        ['I assemble the relevant documents deliberately and tell it which one is authoritative.', 3],
-        ['I bring in our actual reference material — appetite guide, rating rules, referral criteria — not just the account file.', 4],
-        ['I work from a grounded setup that pulls from approved sources and cites which document each statement came from.', 5]
-      ]},
-    { d: 'context', type: 'jd',
-      q: 'Two sources disagree: the broker submission says the risk is sprinklered, the 2023 engineering survey says the sprinklers were out of service. The AI summary reports it as sprinklered. What prevents this whole class of error?',
-      o: [
-        ['Set source precedence in the setup — inspection findings outrank broker representation — and require the output to cite its source for each fact.', 5],
-        ['Ask the model to check for contradictions between documents before it summarises.', 3],
-        ['Give it only the engineering survey.', 2],
-        ['Have the underwriter read the survey and correct the summary afterwards.', 1]
-      ]},
-    { d: 'controls', type: 'sc',
-      q: 'Where does the human check sit in an AI-assisted underwriting workflow you would be willing to run?',
-      o: [
-        ["I haven't had to think about that yet.", 1],
-        ['I read everything it produces before I use any of it.', 2],
-        ['I review everything, and I can say which outputs carry regulatory or authority exposure.', 3],
-        ['I place checkpoints deliberately on the steps that bind the company, and let lower-stakes steps run unattended.', 4],
-        ['I design the checkpoints up front from where the flow could cause harm, and I keep a record of what was reviewed.', 5]
-      ]},
-    { d: 'controls', type: 'jd',
-      q: 'A flow drafts declination letters and issues them once the underwriter has approved the declination decision. The highest-risk gap is —',
-      o: [
-        ['The stated reason in the letter is generated text and can drift from the actual basis for declination — a regulatory exposure, even though the decision was approved.', 5],
-        ['The underwriter may approve without reading the letter carefully.', 3],
-        ['The letter could go to a stale broker address.', 2],
-        ['The tone may not match how we usually write.', 1]
-      ]},
-    { d: 'adoption', type: 'sc',
-      q: 'Have you taught anyone else on your team to use AI in their underwriting work?',
-      o: [
-        ["No, and I wouldn't know where to start.", 1],
-        ["I've mentioned things that worked for me, informally.", 2],
-        ["I've walked a colleague through a specific technique or handed over something that worked.", 3],
-        ["I've shared reusable assets — templates or flows — that other people now use on live work.", 4],
-        ['I run or contribute to a regular forum where the team shares what is working and what failed.', 5]
-      ]},
-    { d: 'adoption', type: 'sc',
-      q: 'Your team is sceptical that AI can handle underwriting judgment. Your honest response is —',
-      o: [
-        ["Privately, I'd probably agree with them.", 1],
-        ["I'd say the technology will improve over time.", 2],
-        ["I'd separate the judgment itself from all the work surrounding the judgment, and point at the second one.", 3],
-        ["I'd show a concrete before-and-after on a real account where it saved time without touching the decision.", 4],
-        ["I'd show that, plus the case where it got something wrong and the guardrail we added — that is what actually earns trust.", 5]
-      ]}
-  ],
-
-  /* ================= CLAIMS ================= */
-  cl: [
-    { d: 'framing', type: 'sc',
-      q: 'You want AI help getting on top of a complex claim file. Which best describes how you would set the request up?',
-      o: [
-        ["I'd type “summarise this claim” and see what comes back.", 1],
-        ["I'd paste the file notes in and ask follow-up questions until the answer is useful.", 2],
-        ["I'd write a structured request: line of business, what I need assessed, and the output format I need.", 3],
-        ["I'd write a structured request and include two examples of a good claim summary from our own closed files.", 4],
-        ["I keep a reusable template for this claim type that I've tested against files where I already know the outcome — and I know where it fails.", 5]
-      ]},
-    { d: 'framing', type: 'jd',
-      q: 'You ask for “a summary of the claimant’s account of the accident.” The output blends the claimant’s statement with the adjuster’s later file notes into one smooth narrative. The request is most at fault because —',
-      o: [
-        ['It never said whose account, from which document — so the model merged sources that need to stay separated.', 5],
-        ['The file notes should have been supplied in strict chronological order.', 3],
-        ['Summarising claim files is not a sound use of these tools.', 2],
-        ['The model hallucinated — nothing in the request could have prevented it.', 1]
-      ]},
-    { d: 'decomp', type: 'sc',
-      q: 'Think about the FNOL-to-assignment path you actually work in. How far have you got in mapping it into steps something automated could run?',
-      o: [
-        ["I haven't thought about my work that way.", 1],
-        ['I could talk through the steps, but I have never written them down.', 2],
-        ["I've written the steps out and can say which are rules-based and which need judgment.", 3],
-        ["I've written them out and identified the specific points where an agent would have to call a system or open a document to continue.", 4],
-        ["I've mapped it, built at least one step as a working flow, and I know which handoffs break.", 5]
-      ]},
-    { d: 'decomp', type: 'jd',
-      q: 'You are breaking “triage an incoming FNOL” into steps an agent could run. Which of these is the wrong thing to hand over as a single step?',
-      o: [
-        ['“Determine whether coverage applies and set the reserve” — it fuses policy interpretation with a financial commitment in one opaque step.', 5],
-        ['“Check whether the policy was in force on the loss date” — the policy system may be unavailable.', 3],
-        ['“Extract loss date, location and cause from the notification” — free-text FNOL is messy.', 2],
-        ['“Route it to the right adjuster queue” — the routing rules change frequently.', 1]
-      ]},
-    { d: 'build', type: 'sc',
-      q: 'An agentic flow is a sequence where AI calls a tool, uses what comes back, and moves to the next step. Where are you with building one?',
-      o: [
-        ["I've heard the term but couldn't describe one.", 1],
-        ["I understand the idea and have seen demos, but I haven't built anything.", 2],
-        ["I've built a single-step assistant or custom helper that someone else could use.", 3],
-        ["I've built a multi-step flow where one step's output feeds the next, and debugged it when it broke.", 4],
-        ["I've shipped a flow that colleagues use on live work, with real tool calls and error handling.", 5]
-      ]},
-    { d: 'build', type: 'jd',
-      q: 'Your flow reads FNOL text, classifies severity, and routes the claim. On ambiguous notifications the classifier reports low confidence — but the flow routes anyway. The best fix is to —',
-      o: [
-        ['Send low-confidence cases to a human triage queue instead of forcing a classification.', 5],
-        ['Re-work the classifier so it returns low confidence less often.', 3],
-        ['Default every ambiguous case to the high-severity queue to be safe.', 2],
-        ['Add an instruction telling the classifier to be more decisive.', 1]
-      ]},
-    { d: 'context', type: 'sc',
-      q: 'When you use AI on a claim, what do you actually give it to work from?',
-      o: [
-        ['Whatever is in the conversation — I mostly ask from memory.', 1],
-        ['I paste in the file notes or the relevant correspondence.', 2],
-        ['I assemble the relevant documents deliberately and tell it which one is authoritative.', 3],
-        ['I bring in our actual reference material — the policy wording, reserving guidance, handling standards — not just the file.', 4],
-        ['I work from a grounded setup that pulls from approved sources and cites which document each statement came from.', 5]
-      ]},
-    { d: 'context', type: 'jd',
-      q: 'The file says “water damage.” The policy wording treats flood and escape of water very differently. The AI summary calls the loss covered. What prevents this whole class of error?',
-      o: [
-        ['Ground the flow in the actual policy wording as the authoritative source and require it to name the clause it relied on.', 5],
-        ['Ask it to be more careful whenever coverage language is involved.', 3],
-        ['Supply a glossary of claims terminology alongside the file.', 2],
-        ['Have the adjuster verify coverage after the summary is produced.', 1]
-      ]},
-    { d: 'controls', type: 'sc',
-      q: 'Where does the human check sit in an AI-assisted claims workflow you would be willing to run?',
-      o: [
-        ["I haven't had to think about that yet.", 1],
-        ['I read everything it produces before I use any of it.', 2],
-        ['I review everything, and I can say which outputs carry regulatory or policyholder exposure.', 3],
-        ['I place checkpoints deliberately on the steps that commit the company, and let lower-stakes steps run unattended.', 4],
-        ['I design the checkpoints up front from where the flow could cause harm, and I keep a record of what was reviewed.', 5]
-      ]},
-    { d: 'controls', type: 'jd',
-      q: 'A flow drafts and issues denial correspondence once the adjuster has approved the coverage decision. The highest-risk gap is —',
-      o: [
-        ['The denial rationale in the letter is generated text and can drift from the actual coverage basis — a regulatory and bad-faith exposure, even though the decision was approved.', 5],
-        ['The adjuster may approve without reading the letter closely.', 3],
-        ['The letter could go to a stale address on file.', 2],
-        ['The letter may read as unsympathetic to the claimant.', 1]
-      ]},
-    { d: 'adoption', type: 'sc',
-      q: 'Have you taught anyone else on your team to use AI in their claims work?',
-      o: [
-        ["No, and I wouldn't know where to start.", 1],
-        ["I've mentioned things that worked for me, informally.", 2],
-        ["I've walked a colleague through a specific technique or handed over something that worked.", 3],
-        ["I've shared reusable assets — templates or flows — that other people now use on live work.", 4],
-        ['I run or contribute to a regular forum where the team shares what is working and what failed.', 5]
-      ]},
-    { d: 'adoption', type: 'sc',
-      q: 'Your team is sceptical that AI can handle claims judgment. Your honest response is —',
-      o: [
-        ["Privately, I'd probably agree with them.", 1],
-        ["I'd say the technology will improve over time.", 2],
-        ["I'd separate the judgment itself from all the work surrounding the judgment, and point at the second one.", 3],
-        ["I'd show a concrete before-and-after on a real file where it saved time without touching the decision.", 4],
-        ["I'd show that, plus the case where it got something wrong and the guardrail we added — that is what actually earns trust.", 5]
-      ]}
-  ],
-
-  /* ================= DISTRIBUTION / SALES ================= */
-  ds: [
-    { d: 'framing', type: 'sc',
-      q: 'You want AI help preparing for a meeting with an important broker. Which best describes how you would set the request up?',
-      o: [
-        ["I'd type “help me prep for this meeting” and see what comes back.", 1],
-        ["I'd paste in what I have and ask follow-up questions until the answer is useful.", 2],
-        ["I'd write a structured request: the relationship, what I need to come away with, and the output format.", 3],
-        ["I'd write a structured request and include two examples of a meeting brief that actually worked for me.", 4],
-        ["I keep a reusable meeting-prep template that I've tested across several brokers — and I know where it falls down.", 5]
-      ]},
-    { d: 'framing', type: 'jd',
-      q: 'You ask for “a summary of this broker’s book and where we should grow it.” The output confidently recommends classes we do not write. The request is most at fault because —',
-      o: [
-        ['It never told the model what we actually write — our appetite was absent, so it reasoned from generic market logic.', 5],
-        ['The book data should have been supplied as a clean table rather than prose.', 3],
-        ['Strategy questions are beyond what these tools can do.', 2],
-        ['Nothing is wrong with the request — the model simply made an error.', 1]
-      ]},
-    { d: 'decomp', type: 'sc',
-      q: 'Think about the renewal-retention path you actually work in. How far have you got in mapping it into steps something automated could run?',
-      o: [
-        ["I haven't thought about my work that way.", 1],
-        ['I could talk through the steps, but I have never written them down.', 2],
-        ["I've written the steps out and can say which are rules-based and which need judgment.", 3],
-        ["I've written them out and identified the specific points where an agent would have to call a system or open a document to continue.", 4],
-        ["I've mapped it, built at least one step as a working flow, and I know which handoffs break.", 5]
-      ]},
-    { d: 'decomp', type: 'jd',
-      q: 'You are breaking “prepare for a renewal meeting with a key broker” into steps an agent could run. Which of these is the wrong thing to hand over as a single step?',
-      o: [
-        ['“Decide what pricing concession to offer” — it fuses analysis with a commitment that carries authority and sets precedent.', 5],
-        ['“Pull the broker’s loss ratio and premium trend from the reporting system” — it depends on a system that may be unavailable.', 3],
-        ['“Summarise the last four meeting notes” — the notes are inconsistent in quality.', 2],
-        ['“Draft the agenda” — the agenda should reflect my read of the relationship.', 1]
-      ]},
-    { d: 'build', type: 'sc',
-      q: 'An agentic flow is a sequence where AI calls a tool, uses what comes back, and moves to the next step. Where are you with building one?',
-      o: [
-        ["I've heard the term but couldn't describe one.", 1],
-        ["I understand the idea and have seen demos, but I haven't built anything.", 2],
-        ["I've built a single-step assistant or custom helper that someone else could use.", 3],
-        ["I've built a multi-step flow where one step's output feeds the next, and debugged it when it broke.", 4],
-        ["I've shipped a flow that colleagues use on live work, with real tool calls and error handling.", 5]
-      ]},
-    { d: 'build', type: 'jd',
-      q: 'Your flow pulls broker performance data and then drafts talking points. When the data pull comes back partial, the drafting step still produces confident talking points. The best fix is to —',
-      o: [
-        ['Gate the drafting step on data completeness — if the pull is partial, stop and flag rather than draft.', 5],
-        ['Instruct the drafting step to hedge whenever the data looks thin.', 3],
-        ['Retry the data pull several more times before drafting.', 2],
-        ['Note in the drafting instructions that data may sometimes be incomplete.', 1]
-      ]},
-    { d: 'context', type: 'sc',
-      q: 'When you use AI on an account or a broker relationship, what do you actually give it to work from?',
-      o: [
-        ['Whatever is in the conversation — I mostly ask from memory.', 1],
-        ['I paste in the recent email chain or whatever the CRM shows.', 2],
-        ['I assemble the relevant material deliberately and tell it which source is authoritative.', 3],
-        ['I bring in our actual reference material — appetite guide, pricing bands, prior meeting notes — not just the CRM record.', 4],
-        ['I work from a grounded setup that pulls from approved sources and cites which record each statement came from.', 5]
-      ]},
-    { d: 'context', type: 'jd',
-      q: 'The CRM says the broker’s largest account renewed with us in March. The underwriter’s notes say it moved to a competitor in February. An AI-drafted brief repeats the CRM version — to the client. What prevents this whole class of error?',
-      o: [
-        ['Set source precedence and recency rules up front, and require the brief to cite a source and a date for each claim it makes.', 5],
-        ['Ask it to flag anything that looks contradictory between sources.', 3],
-        ['Work only from the underwriter’s notes and ignore the CRM.', 2],
-        ['Proofread the brief carefully before the meeting.', 1]
-      ]},
-    { d: 'controls', type: 'sc',
-      q: 'Where does the human check sit in an AI-assisted, client-facing workflow you would be willing to run?',
-      o: [
-        ["I haven't had to think about that yet.", 1],
-        ['I read everything it produces before anything goes out.', 2],
-        ['I review everything, and I can say which outputs carry regulatory or reputational exposure.', 3],
-        ['I place checkpoints deliberately on anything that reaches a client, and let internal-only steps run unattended.', 4],
-        ['I design the checkpoints up front from where the flow could cause harm, and I keep a record of what was reviewed.', 5]
-      ]},
-    { d: 'controls', type: 'jd',
-      q: 'A flow drafts personalised client outreach and sends it once you approve the recipient list. The highest-risk gap is —',
-      o: [
-        ['Approving a list is not approving the content — each message contains generated claims about coverage and performance that nobody reviewed individually.', 5],
-        ['The degree of personalisation may feel intrusive to some clients.', 3],
-        ['Messages may go out at an unhelpful time of day.', 2],
-        ['The tone may drift off-brand.', 1]
-      ]},
-    { d: 'adoption', type: 'sc',
-      q: 'Have you taught anyone else on your team to use AI in their distribution work?',
-      o: [
-        ["No, and I wouldn't know where to start.", 1],
-        ["I've mentioned things that worked for me, informally.", 2],
-        ["I've walked a colleague through a specific technique or handed over something that worked.", 3],
-        ["I've shared reusable assets — templates or flows — that other people now use on live work.", 4],
-        ['I run or contribute to a regular forum where the team shares what is working and what failed.', 5]
-      ]},
-    { d: 'adoption', type: 'sc',
-      q: 'Your team is sceptical that AI has any place in relationship-led selling. Your honest response is —',
-      o: [
-        ["Privately, I'd probably agree with them.", 1],
-        ["I'd say the technology will improve over time.", 2],
-        ["I'd separate the relationship itself from all the preparation around it, and point at the second one.", 3],
-        ["I'd show a concrete before-and-after on a real account where prep got sharper without the relationship changing hands.", 4],
-        ["I'd show that, plus the case where it got something wrong in front of a client and the guardrail we added — that is what actually earns trust.", 5]
-      ]}
-  ]
-};
-
-/* ------------------------------------------------------------
-   LEARNING CONTENT
-   Generic guidance per dimension x level, plus a role-specific
-   concrete build for each role x dimension x level.
-   Levels: 0 = start (<2.5), 1 = build (2.5-3.75), 2 = extend (>3.75)
-   ------------------------------------------------------------ */
-
-function levelIndex(score) { return score < 2.5 ? 0 : (score < 3.75 ? 1 : 2); }
+var ENGINE2_VERSION = 3;
+var DIMENSIONS = BASE.DIMENSIONS;
+var GUIDANCE = BASE.GUIDANCE;
 var LEVEL_LABEL = ['Start here', 'Build on it', 'Extend it'];
-
-var GUIDANCE = {
-  framing: [
-    { h: 'Learn to specify, not to ask',
-      w: 'Most weak output traces back to an under-specified request, not a weak model. The move is to state the role, the inputs, the judgment you want, the format, and the thresholds that define words like "material" or "concerning".',
-      a: ['Take one request that disappointed you and rewrite it with an explicit output format and an explicit definition of every subjective word in it.',
-          'Learn the difference between asking for an answer and asking for reasoning you can check.'] },
-    { h: 'Make your prompts reusable assets',
-      w: 'You already get useful output. The step up is turning the good ones into templates with slots, so quality does not depend on how well you happened to phrase it that day.',
-      a: ['Convert your three best requests into templates with clearly marked slots for the variable parts.',
-          'Add two worked examples from your own past work to each template — examples move output quality more than extra instructions.'] },
-    { h: 'Test your prompts like you would test a model',
-      w: 'At this level the risk is silent drift: a template that works on typical cases and fails quietly on the edge. Treat prompts as things that need a test set.',
-      a: ['Assemble five past cases where you already know the right answer and run your template against all five whenever you change it.',
-          'Write down the failure modes you find, and publish them alongside the template so others inherit the warning.'] }
-  ],
-  decomp: [
-    { h: 'Learn to see your work as steps',
-      w: 'Before anything can be automated it has to be describable. The skill is separating what is genuinely judgment from the retrieval, formatting and chasing that surrounds it — usually most of the elapsed time.',
-      a: ['Write out one end-to-end process you own as a numbered list of steps, with the input and output of each.',
-          'Mark each step as rules-based, judgment, or waiting-on-someone. The last category is where the easy wins are.'] },
-    { h: 'Find the seams an agent can work in',
-      w: 'You can describe the steps. Now find the boundaries: the points where a step needs to reach outside itself for a document, a system record, or a person.',
-      a: ['On your process map, mark every point where information has to be fetched from somewhere else — those are tool calls.',
-          'Identify one step that is high-volume, low-judgment and reversible. That is your first build.'] },
-    { h: 'Design for failure, not just flow',
-      w: 'A mapped process assumes everything works. The next level is knowing what each step does when its input is missing, stale, contradictory or wrong.',
-      a: ['For each step in a flow you have built, write down what it should do when its input is bad — and make sure it does that.',
-          'Map the blast radius of each step: if this one is silently wrong, who finds out, and when?'] }
-  ],
-  build: [
-    { h: 'Build one thing, end to end',
-      w: 'The gap between understanding agentic flows and having built one is the single biggest driver of a low score here. It closes only by building something small and real.',
-      a: ['Build one assistant that does a single repetitive task you personally do every week. Keep it to one step.',
-          'Use it for two weeks on real work and note every time it fails — that list is your actual curriculum.'] },
-    { h: 'Chain steps and handle the joins',
-      w: 'One step working is not a flow. The engineering is in the joins: passing output between steps, validating it on the way through, and deciding what happens when a step returns nothing useful.',
-      a: ['Extend your single-step helper so one step’s output becomes the next step’s input, with a validation check between them.',
-          'Deliberately feed it a bad input and watch what happens. If it fails silently, that is the bug to fix first.'] },
-    { h: 'Make it robust enough for someone else',
-      w: 'Something you can operate is not something a colleague can operate. Robustness, error messages and sane defaults are what separate a demo from a tool.',
-      a: ['Hand your flow to one colleague with no explanation and watch where they get stuck — do not help them.',
-          'Add explicit failure paths: what the flow does when a source is unavailable, a field is empty, or confidence is low.'] }
-  ],
-  context: [
-    { h: 'Stop working from memory',
-      w: 'AI output is only as good as what it was actually given. Working from memory or a single pasted email is the most common cause of confident, wrong answers.',
-      a: ['Before your next AI-assisted task, deliberately assemble the documents it should work from and say which one wins if they disagree.',
-          'Ask for the source of each claim in the output, then spot-check two of them.'] },
-    { h: 'Bring in the authoritative material',
-      w: 'You assemble documents well. The step up is grounding in our own reference material — the guides, wordings and rules that define what a correct answer is here rather than in general.',
-      a: ['Identify the two or three reference documents that define correctness in your role and start including them by default.',
-          'Set explicit precedence rules: which source outranks which, and how recency is handled.'] },
-    { h: 'Make grounding verifiable',
-      w: 'At this level the goal is output someone else can audit: every material statement traceable to a named source, so a reviewer can check rather than trust.',
-      a: ['Require citation-by-default in anything you build — statement, source document, date.',
-          'Build a contradiction check: where two grounded sources disagree, the flow should surface it rather than silently pick one.'] }
-  ],
-  controls: [
-    { h: 'Learn where the exposure actually is',
-      w: 'This is the highest-weighted dimension for most insurance roles, and the most common blind spot. Not every step carries equal risk — knowing which ones bind the company is the foundation of everything else.',
-      a: ['List the outputs you produce that a regulator, a court, or a policyholder could later read. Those need human sign-off, always.',
-          'Learn the three failure modes that matter here: confident fabrication, silent omission, and drift between a decision and how it gets described.'] },
-    { h: 'Place checkpoints deliberately',
-      w: 'Reviewing everything is not a control strategy — it does not scale and attention degrades. The skill is placing checks where harm is possible and letting the rest run.',
-      a: ['For one flow, decide which steps need human sign-off based on reversibility and exposure, and write down why.',
-          'Distinguish approving a decision from approving the text that communicates it — they are different controls, and the second is routinely missed.'] },
-    { h: 'Make controls auditable and teachable',
-      w: 'Your own judgment about controls is good. The next level is making it explicit enough that others can apply it, and evidenced enough to survive a review.',
-      a: ['Write the control design down: what is checked, by whom, at which step, and what gets logged.',
-          'Take one flow through a conversation with risk, compliance or legal before it scales — early, not after.'] }
-  ],
-  adoption: [
-    { h: 'Get your own practice solid first',
-      w: 'You cannot lift a team from a standing start. At this level the most useful thing is a working habit of your own, plus honesty about what has not worked.',
-      a: ['Use AI on real work daily for four weeks and keep a short log of wins and failures.',
-          'Find one person nearby who is further along and ask to see what they actually built.'] },
-    { h: 'Share the asset, not the anecdote',
-      w: 'Telling colleagues that AI is useful changes nothing. Handing them a template that works on their next task changes something immediately.',
-      a: ['Package one thing you use into something a colleague can run without you in the room.',
-          'Run a 20-minute session on one specific task rather than a general overview — specificity is what converts sceptics.'] },
-    { h: 'Build the mechanism, not just the moment',
-      w: 'One-off enthusiasm fades. What persists is a routine: somewhere the team shares what worked, what broke, and what is now the standard way of doing something.',
-      a: ['Set up a recurring, low-ceremony forum where people bring one thing that worked and one that failed.',
-          'Share your failures publicly — teams adopt faster when the risks are discussed openly than when only successes are shown.'] }
-  ]
-};
-
-/* Role-specific concrete build, per role x dimension x level. */
-var ROLE_ACTION = {
-  uw: {
-    framing: ['Rewrite your standard "assess this submission" request to name the class, the appetite thresholds, and the exact referral-summary format you want back.',
-              'Turn your best submission-review request into a template with slots for class, TIV band and occupancy — with two of your own past referral summaries as examples.',
-              'Run your submission template against five accounts you already declined and five you wrote, and record where it disagrees with the actual outcome.'],
-    decomp: ['Write out submission-to-quote for one class as numbered steps, marking which need underwriting judgment and which are retrieval or chasing.',
-             'Mark every point in submission clearance where information has to be fetched — loss runs, prior-term terms, SOV data — and pick the highest-volume one to build.',
-             'For your clearance flow, define what happens when the SOV is unreadable, the loss runs are missing, or the broker data contradicts the prior term.'],
-    build: ['Build a single-step helper that extracts and normalises the key data points from an SOV into the format you actually use.',
-            'Chain SOV extraction into a completeness check that flags any missing or implausible field before anything downstream touches it.',
-            'Hand your clearance flow to another underwriter cold, and add the failure paths their first three attempts expose.'],
-    context: ['Before your next referral, assemble the submission, the survey and the prior-term file deliberately, and state that inspection findings outrank broker representations.',
-              'Bring your appetite guide and referral criteria into the flow by default, so "outside appetite" is grounded in our rules rather than general market logic.',
-              'Require your submission summaries to cite the source document and date for every risk characteristic they assert.'],
-    controls: ['List every underwriting output a regulator or a court could read — declinations, coverage confirmations, rating rationale — and mark them as always human-signed.',
-               'On your clearance flow, separate approving the decision from approving the letter that states the reason. Put a distinct check on the second.',
-               'Write down the control design for one flow and walk it through with risk or compliance before anyone else uses it.'],
-    adoption: ['Use AI on live submissions daily for four weeks and log what it got right and what it got dangerously wrong.',
-               'Package your submission template so another underwriter can use it on their next account without you explaining it.',
-               'Start a monthly underwriting forum where people bring one thing that worked and one that failed on live accounts.']
-  },
-  cl: {
-    framing: ['Rewrite your standard "summarise this claim" request to name the source document, whose account you want, and the exact summary format.',
-              'Turn your best claim-review request into a template with slots for line of business and claim stage — with two of your own closed-file summaries as examples.',
-              'Run your claim template against five closed files where you know the outcome and record where its read diverges from what actually happened.'],
-    decomp: ['Write out FNOL-to-assignment as numbered steps, marking which need adjuster judgment and which are extraction, lookup or chasing.',
-             'Mark every point in triage where information has to be fetched — policy in force, prior claims, coverage wording — and pick the highest-volume one to build.',
-             'For your triage flow, define what happens when the FNOL is ambiguous, the policy system is down, or severity confidence is low.'],
-    build: ['Build a single-step helper that pulls loss date, location, cause and reported severity out of free-text FNOL into a clean structure.',
-            'Chain FNOL extraction into a severity classifier, with a confidence gate that diverts anything uncertain to a human queue.',
-            'Hand your triage flow to another adjuster cold, and add the failure paths their first three attempts expose.'],
-    context: ['Before your next coverage question, assemble the file notes, the policy wording and the correspondence deliberately, and state that the wording is authoritative.',
-              'Bring the actual policy wording and handling standards into the flow by default, so coverage statements are grounded in the contract rather than in general usage.',
-              'Require your claim summaries to name the clause relied on and the document and date for every material fact.'],
-    controls: ['List every claims output a regulator, a court or a policyholder could read — denials, reservations of rights, coverage positions — and mark them as always human-signed.',
-               'On your correspondence flow, separate approving the coverage decision from approving the letter that states the rationale. Put a distinct check on the second.',
-               'Write down the control design for one flow and walk it through with claims legal or compliance before anyone else uses it.'],
-    adoption: ['Use AI on live files daily for four weeks and log what it got right and what it got dangerously wrong.',
-               'Package your claim-summary template so another adjuster can use it on their next file without you explaining it.',
-               'Start a monthly claims forum where people bring one thing that worked and one that failed on live files.']
-  },
-  ds: {
-    framing: ['Rewrite your standard meeting-prep request to name the relationship history, what we actually write, and the exact brief format you want.',
-              'Turn your best meeting-prep request into a template with slots for broker, segment and renewal stage — with two briefs that actually worked as examples.',
-              'Run your prep template across five brokers with very different books and record where its recommendations stop making sense.'],
-    decomp: ['Write out your renewal-retention path as numbered steps, marking which need relationship judgment and which are data pulls or preparation.',
-             'Mark every point in renewal prep where information has to be fetched — CRM, loss ratio, prior notes, appetite — and pick the highest-volume one to build.',
-             'For your prep flow, define what happens when the data pull is partial, the CRM contradicts the underwriter, or the notes are stale.'],
-    build: ['Build a single-step helper that turns your CRM record and last meeting notes into a consistent one-page pre-meeting brief.',
-            'Chain the data pull into the brief generation, with a completeness gate that stops and flags rather than drafting on partial data.',
-            'Hand your prep flow to another account manager cold, and add the failure paths their first three attempts expose.'],
-    context: ['Before your next client brief, assemble the CRM record, the underwriter notes and the last correspondence, and state which source wins when they disagree.',
-              'Bring our appetite guide and pricing bands into the flow by default, so growth suggestions stay inside what we actually write.',
-              'Require your client briefs to cite a source and a date for every claim about renewal status, performance or coverage.'],
-    controls: ['List every output of yours that reaches a client or broker in writing, and treat all of it as requiring individual human review.',
-               'On your outreach flow, separate approving the recipient list from approving each message’s content. The second is the control that is usually missing.',
-               'Write down the control design for one client-facing flow and walk it through with compliance before it scales beyond you.'],
-    adoption: ['Use AI on live account prep daily for four weeks and log what sharpened the meeting and what would have embarrassed you.',
-               'Package your meeting-prep brief so another account manager can run it before their next renewal without you explaining it.',
-               'Start a monthly distribution forum where people bring one thing that worked and one that failed in front of a client.']
-  }
-};
-
-/* ------------------------------------------------------------
-   SCORING
-   ------------------------------------------------------------ */
-
+function levelIndex(s) { return s < 2.5 ? 0 : (s < 3.75 ? 1 : 2); }
 function round2(n) { return Math.round(n * 100) / 100; }
 
-function bandFor(score) {
-  for (var i = 0; i < BANDS.length; i++) {
-    if (score >= BANDS[i].min && score <= BANDS[i].max) return BANDS[i];
+var TRACKS = [
+  { id: 'found', step: 1, name: 'AI foundations', practice: null, minutes: 5,
+    blurb: 'How AI works, where it goes wrong, and how to use it safely.' },
+  { id: 'ds', step: 2, name: 'Distribution / Sales', practice: 'Distribution practice', minutes: 10,
+    blurb: 'AI in broker and client work, new business and retention.' },
+  { id: 'cl', step: 2, name: 'Claims', practice: 'Claims practice', minutes: 10,
+    blurb: 'AI in FNOL, triage, adjusting and settlement.' },
+  { id: 'uw', step: 2, name: 'Underwriting', practice: 'Underwriting practice', minutes: 10,
+    blurb: 'AI in risk selection, pricing, referrals and renewals.' }
+];
+function trackById(id) { return TRACKS.filter(function (t) { return t.id === id; })[0]; }
+
+var SECTION_BLURB = {
+  F: 'How AI tools work, where they fail, and how to use them safely. Each of these has a right answer.',
+  R: 'How you use AI in your own work today. Pick the answer that is true of you, not the one that sounds best.'
+};
+
+/* Provisional thresholds — recalibrate after the pilot so roughly 3–5% land as
+   Champions and ~1% as Builders. */
+var THRESH = { literatePct: 80, champion: 3.25, builderBuild: 3.75, builderControls: 3.25 };
+var CHAMPION_DIMS = ['framing', 'decomp', 'context', 'adoption'];
+
+var TIERS = {
+  pre:      { name: 'Building toward AI Literate', desc: 'You are on your way to the baseline. Close the foundations gaps below first — everything else builds on them.' },
+  literate: { name: 'AI Literate', desc: 'The baseline expected of everyone: use approved tools, prompt well, verify output, protect data, and spot use cases in your own work.' },
+  champion: { name: 'AI Champion', desc: 'A power user: you can redesign how your team works, run role-specific tools, coach peers and feed the use-case pipeline.' },
+  builder:  { name: 'AI Builder', desc: 'You can prototype agents and automations inside guardrails, for IT to harden and scale what proves out.' },
+  both:     { name: 'AI Champion + Builder', desc: 'You redesign how your team works and coach peers, and you can prototype agents and automations inside guardrails for IT to harden and scale.' },
+  pending:  { name: 'Not yet at Champion or Builder level', desc: 'Your role answers do not reach AI Champion or AI Builder level yet — the learning path below shows where to focus. Take AI foundations as well to see whether you are AI Literate, the baseline for every tier.' }
+};
+var PROVISIONAL_NOTE = ' Provisional until you pass AI foundations — every tier starts with AI Literate.';
+
+/* ---------------- Part 1: foundations (shared by every track) ---------------- */
+var FOUND = [
+  { id: 'F1', sec: 'F', d: 'found', type: 'single', topic: 'Checking AI output',
+    q: 'An AI assistant summarises a term life policy for you and states that the policy has a 31-day grace period for missed premiums before it lapses, “under section 4.2”. What should you do before relying on it?',
+    o: [['Open the policy and read section 4.2 yourself.', true],
+        ['Rely on it — it cited a specific section, so it must have read it.', false],
+        ['Ask the assistant “Are you sure?” and accept the answer if it confirms.', false],
+        ['Regenerate the answer a few times — if the answers agree, it is right.', false]],
+    explain: 'AI can produce a precise-looking citation that is wrong, and it will often confirm or repeat its own mistake when asked again. Asking it is not verification — checking the source is. The more specific and consequential the claim, the more it needs checking.' },
+
+  { id: 'F2', sec: 'F', d: 'found', type: 'match', topic: 'Why AI gets things wrong',
+    q: 'AI tools make mistakes for different reasons. Match each mistake to the cause that best explains it.',
+    pairs: [['Cites a state regulation that does not exist', 'Generating plausible-sounding but false information'],
+            ['Does not know about a rate change filed last month', 'Knowledge limited to its training data'],
+            ['Drafts a claims example that assumes every contractor is a man', 'Bias reflected from its training data'],
+            ['Misses an exclusion on page 140 of a long policy wording pack', 'Context-window limits — more than it can hold at once'],
+            ['Adds up twelve monthly premiums and gets the total wrong', 'Predicting likely words rather than calculating']],
+    explain: 'Each failure has a different fix: check citations against the source; give it current information (or use search) for anything recent; review for stereotypes; point it at the relevant section of long documents; and use a spreadsheet or calculator tool for arithmetic.' },
+
+  { id: 'F3', sec: 'F', d: 'found', type: 'multi', topic: 'What AI is reliable for',
+    q: 'Which of these is AI typically reliable for today? Select all that apply.',
+    o: [['Summarising a long email thread with a broker', true],
+        ['Drafting a first version of renewal outreach for you to edit', true],
+        ['Brainstorming objections a prospect might raise', true],
+        ['Reformatting call notes into your CRM template', true],
+        ['Stating directly to a client whether a specific loss is covered', false],
+        ['Predicting which prospects will definitely convert', false]],
+    explain: 'AI is strong at drafting, summarising, reformatting and brainstorming — work a person then checks. A coverage answer given directly to a client, and anything presented as certain about the future, needs human judgment and accountability. AI can help you prepare the answer; a person has to own it.' },
+
+  { id: 'F4', sec: 'F', d: 'found', type: 'single', topic: 'Memory across chats',
+    q: 'Last week, in one chat, you told an AI assistant “my book is mostly small commercial in the Midwest.” Today, in a brand-new chat, it tailors its answer to small commercial without being told. What best explains this?',
+    o: [['It saved that detail to persistent memory and recalled it in the new chat.', true],
+        ['The earlier chat stays in its context window and carries over to every new chat.', false],
+        ['It retrained itself on your earlier conversation.', false],
+        ['It inferred your book from the wording of the new question.', false],
+        ['It searched the web for information about you.', false]],
+    explain: 'Each new chat starts with an empty context window, and the model is not retrained by your conversations. Anything carried across chats comes from persistent memory (or a project that holds shared context) — so you can check what it has remembered, and correct or remove it.' },
+
+  { id: 'F5', sec: 'F', d: 'found', type: 'sort', topic: 'Knowledge, search or research',
+    q: 'Sort each request by the information access it needs.',
+    groups: ['Model’s own knowledge is enough', 'Needs web search', 'Needs deep research'],
+    items: [['Tightening your own rough meeting notes into three clear sentences', 0],
+            ['Explaining the difference between a commission and a contingent bonus to a new hire', 0],
+            ['Checking whether a competitor announced a rate increase this month', 1],
+            ['Pulling the exact wording of regulatory guidance issued last week', 1],
+            ['Comparing five competitors’ small-commercial appetite and broker incentives, with sources cited', 2],
+            ['Building a view of how embedded insurance is changing broker distribution, across several reports', 2]],
+    explain: 'Stable concepts and your own text need nothing extra. A single recent fact needs a search. Anything that means gathering, comparing and citing many sources is a deep-research job — and the output still needs checking against the sources it cites.' },
+
+  { id: 'F6', sec: 'F', d: 'found', type: 'sort', topic: 'Protecting data',
+    q: 'Sort each item by where it is safe to put it.',
+    note: [['Any AI tool', 'Includes free public tools. Treat anything you type there as if it could become public.'],
+           ['Company-approved AI tool', 'A tool your company has licensed and secured for everyday internal business information. You can use it for that without asking each time.'],
+           ['Explicit clearance', 'A specific sign-off — typically from privacy, compliance or the data owner — for this particular data and this use. Needed even inside an approved tool, because personal and health data, or another company’s confidential information, carry legal and contractual duties that an approved tool alone does not cover.']],
+    groups: ['Any AI tool', 'Company-approved AI tool', 'Needs explicit clearance — even in an approved tool'],
+    items: [['A published press release about a new product', 0],
+            ['Your own draft of a generic LinkedIn post', 0],
+            ['A broker’s book-of-business report', 1],
+            ['Internal pricing guidelines', 1],
+            ['A named client’s claims and medical history', 2],
+            ['A competitor’s confidential pricing that someone forwarded to you', 2]],
+    explain: 'Public information can go anywhere. Everyday internal business information — book-of-business reports, pricing guidelines — belongs in the company-approved tool, which is cleared for exactly that. Approval covers the tool, not every kind of data: personal and health information, or confidential information belonging to someone else, also needs a specific sign-off for that data and that use, because privacy law and contracts govern how it may be processed. The exact rules depend on your company’s policy — check it.' }
+];
+
+/* ---------------- Part 2: role-specific sort questions ---------------- */
+var MODEL_Q = 'AI tools often offer a quick model, a standard model, and a deep-thinking mode that is slower and costs more. Sort each task by the level it calls for.';
+var MODEL_GROUPS = ['Quick — simple, routine tasks', 'Standard — most everyday knowledge work', 'Deep thinking — complex, multi-step reasoning'];
+var MODEL_EXPLAIN = 'Match the effort to the task. Deep thinking is slower and more expensive and adds little to simple rewording — but it earns its cost when the task means weighing conflicting evidence or several steps of reasoning.';
+var SETUP_Q = 'Your team is deciding how much setup each recurring AI task is worth. Sort each task by the setup it justifies.';
+var SETUP_GROUPS = ['No setup needed', 'Best as a project', 'Best as a reusable skill'];
+var SETUP_EXPLAIN = 'One-off tasks need no setup. Ongoing work around a shared body of material belongs in a project, where the documents live alongside the chats. A procedure repeated the same way, by you or your team, is worth turning into a reusable skill.';
+
+var ROLE_SORTS = {
+  ds: {
+    model: [['Rephrasing one line in a broker email', 0],
+            ['Translating a short client note into Spanish', 0],
+            ['Drafting a renewal summary from this quarter’s call notes', 1],
+            ['Turning a product brochure into five talking points', 1],
+            ['Reconciling three conflicting loss runs and recommending a renewal strategy', 2],
+            ['Working out which of two coverage structures better fits a client with an unusual risk profile, and why', 2]],
+    setup: [['Rephrasing one awkward paragraph in an email going out this afternoon', 0],
+            ['Checking whether a single sentence reads clearly to a client', 0],
+            ['Answering ongoing questions about one key broker, drawing on their book, contract and past meeting notes', 1],
+            ['Drafting all launch messages for a new product, which must follow one positioning document', 1],
+            ['Turning raw call notes into the team’s standard CRM entry, the same way every week', 2],
+            ['Running the same four-point compliance check on every outbound client email', 2]] },
+  cl: {
+    model: [['Rephrasing one sentence in a letter to a claimant', 0],
+            ['Translating a short claimant message into Spanish', 0],
+            ['Summarising a claim file’s adjuster notes into a status update', 1],
+            ['Turning a long repair estimate into a plain-language summary for the claimant', 1],
+            ['Reconciling conflicting witness statements, photos and the police report to assess liability', 2],
+            ['Working out whether a complex loss falls under one coverage part or two, and why', 2]],
+    setup: [['Rephrasing one awkward paragraph in a letter going out today', 0],
+            ['Checking that one sentence to a claimant reads clearly', 0],
+            ['Answering ongoing questions about one complex claim, drawing on the policy, adjuster notes and expert reports', 1],
+            ['Handling all communications for a catastrophe event, which must follow one approved messaging guide', 1],
+            ['Turning first-notice-of-loss notes into the standard claim summary, the same way every time', 2],
+            ['Running the same five-point fraud-indicator check on every new claim', 2]] },
+  uw: {
+    model: [['Rephrasing one line in an email to a broker', 0],
+            ['Converting a short list of locations into a table', 0],
+            ['Summarising a broker submission into the standard referral note', 1],
+            ['Turning a loss run into a short narrative of the main trends', 1],
+            ['Reconciling a submission with an inspection report that contradicts it, and recommending terms', 2],
+            ['Working out how a new exclusion would interact with existing endorsements on a complex account', 2]],
+    setup: [['Rephrasing one paragraph in a declination email going out today', 0],
+            ['Checking that one subjectivity reads clearly to a broker', 0],
+            ['Answering ongoing questions about one large account, drawing on its submission, prior-term file and loss history', 1],
+            ['Working through a portfolio review in which every note must follow one set of appetite guidelines', 1],
+            ['Turning each new submission into the standard referral summary, the same way every time', 2],
+            ['Running the same six-point appetite check on every incoming submission', 2]] }
+};
+
+/* Edits to the reviewed role banks, keyed by position in the original 12-question bank. */
+var ROLE_EDITS = {
+  ds: {
+    0: { type: 'sc',
+      q: 'It is the first time you are using AI to prepare for a meeting with an important broker — a one-off, not a routine you have built. You can go back and forth with it as much as you like. Which best describes how you would go about it?',
+      o: [['I’d ask a short question like “help me prep for my meeting with this broker” and use what comes back.', 1],
+          ['I’d start with a short question and keep adding details in follow-ups until the answer is useful.', 2],
+          ['I’d open with the context it needs — the relationship, what I want to come away with, the format I want — and then refine it over a few follow-ups.', 3],
+          ['All of option 3, plus I’d attach or connect the sources that hold the facts — CRM history, product guide, past meeting notes — and tell it which to rely on.', 4],
+          ['All of option 4, plus I’d ask it to list what it assumed or could not find, and check the key facts against the sources before I use the brief.', 5]] },
+    1: { type: 'jd',
+      q: 'You ask for “a summary of this broker’s book and where we should grow it.” The output confidently recommends products we do not sell. The request is most at fault because —',
+      o: [['It never told the model which products we actually sell — so it reasoned from generic market logic.', 5],
+          ['The book data should have been supplied as a clean table rather than prose.', 3],
+          ['Strategy questions are beyond what these tools can do.', 2],
+          ['Nothing is wrong with the request — the model simply made an error.', 1]] },
+    2: { type: 'sort', topic: 'Matching work to the right solution',
+      q: 'Not every sales task should be handled the same way. Sort each task by the approach that fits it best.',
+      note: [['Rule-based automation', 'Fixed if-then logic. Same input, same output, no AI judgment needed.'],
+             ['AI drafts, a person reviews', 'AI produces a first version of one piece of work from material you give it; you check and send it.'],
+             ['Agentic workflow', 'AI works through several steps on its own — pulling from systems, deciding what matters, assembling a result — with checks built in.'],
+             ['Keep with a person', 'Decisions that carry authority, accountability or a relationship that should not be delegated.']],
+      groups: ['Rule-based automation', 'AI drafts, a person reviews', 'Agentic workflow', 'Keep with a person'],
+      items: [['Sending a renewal reminder 60 days before every policy anniversary', 0],
+              ['Routing each new web lead to the agent assigned to that postcode', 0],
+              ['Drafting a personalised follow-up email after a client meeting', 1],
+              ['Turning a client’s existing coverage into a one-page summary for their annual review', 1],
+              ['Preparing a meeting brief by pulling the client’s policies, recent service requests and CRM notes from three systems and highlighting coverage gaps', 2],
+              ['Reviewing at-risk policies across billing, service and CRM records, judging which signals matter, and building a prioritised call list with reasons', 2],
+              ['Making the final suitability recommendation to a client and signing it off', 3],
+              ['Negotiating commission terms with a new distribution partner', 3]],
+      explain: 'Use the simplest approach that works. Fixed rules need no AI. One-off drafting suits an assistant with you reviewing. Multi-step work across several systems is where an agentic workflow earns its place. Decisions with regulatory accountability or relationship stakes stay with a person — AI can prepare the ground, not make the call.' },
+    8: { type: 'sc',
+      q: 'Think about an AI-assisted workflow whose output reaches clients — for example, personalised outreach. Which best describes how you would set up human oversight?',
+      o: [['No defined check — I’d rely on the tool and fix problems if a client raised them.', 1],
+          ['One rule for everything — a person reads every output before it is used, whatever the risk.', 2],
+          ['Matched to risk — a person approves each message before it reaches a client, while low-risk internal steps run on their own and are spot-checked.', 3],
+          ['All of option 3, plus defined accountability — a named approver, written criteria for what they check (facts, product claims, suitability, required disclosures) and a route for escalating anything unclear.', 4],
+          ['All of option 4, plus monitoring — a record of what was reviewed and changed, regular sampling of approved messages, and checkpoints adjusted based on the errors found.', 5]] }
   }
-  return BANDS[score < BANDS[0].min ? 0 : BANDS.length - 1];
-}
+};
 
-/* answers: array of 12 option-indices (into the AUTHORED option order) */
-function score(roleId, answers) {
-  var qs = QUESTIONS[roleId];
-  if (!qs) throw new Error('Unknown role: ' + roleId);
-  if (!answers || answers.length !== qs.length) {
-    throw new Error('Expected ' + qs.length + ' answers, got ' + (answers ? answers.length : 0));
-  }
+/* Why the best answer is best — shown in the question-by-question review. Keyed by original bank position. */
+var JD_EXPLAIN = {
+  ds: {
+    1: 'The model filled the gap with general market logic because the request never said which products we sell. Stating that constraint is what turns a generic answer into a usable one — a table or a different model would not have supplied the missing fact.',
+    3: 'Pulling data and summarising notes are preparation an agent can do, with checks. Deciding a pricing concession is a commitment with authority and precedent attached — it stays a human decision, with the agent preparing the analysis behind it.',
+    5: 'Telling a step to hedge or retry does not stop it producing confident output from bad inputs. A gate that checks the data is complete, and stops the flow if not, makes the failure visible instead of letting it reach the talking points.',
+    7: 'Proofreading catches this error, not the next one. Telling the flow which source wins and how recent it must be — and making it cite a source and date for every claim — makes conflicts visible and checkable every time.',
+    9: 'Approving who receives a message is not approving what it says. Each personalised message contains generated statements about products and performance, and those need review — individually, or through approved wording that the flow cannot change.' },
+  cl: {
+    1: 'The model merged two accounts because the request never said whose account to summarise or from which document. In claims, keeping sources separate is the point — the request has to say so.',
+    3: 'Checking policy dates and extracting facts are preparation an agent can do. Deciding coverage and setting a reserve combines interpretation with a financial commitment; it has to stay visible and owned by a person, not hidden inside one automated step.',
+    5: 'Low confidence is useful information. Forcing a classification throws it away, and defaulting everything to high severity floods the queue. Sending uncertain cases to a person keeps automation for the clear ones.',
+    7: '“Water damage” could be flood or escape of water, which are covered very differently. Grounding the flow in the actual policy wording, and requiring it to name the clause it relied on, makes the reasoning checkable before anyone acts on it.',
+    9: 'Approving the decision is not approving the letter. Generated wording can state a reason that differs from the real coverage basis — a regulatory and bad-faith exposure. The rationale in the letter needs its own check.' },
+  uw: {
+    1: '“Concerning” meant something specific to us — thresholds and appetite — but the request never said what. Without it the model applied its own definition. Defining the terms is the fix; structured data or a bigger model would not supply them.',
+    3: 'Pulling loss runs and extracting SOV data are preparation an agent can do, with checks. Deciding whether to renew and on what terms is an authority-bound decision; bundling it into one opaque step removes the underwriter’s judgment and accountability.',
+    5: 'A silent zero produces a wrong price that looks normal. A validation gate that stops on empty or implausible values turns a hidden error into a visible one — defaults and extra instructions only hide it differently.',
+    7: 'Correcting the summary afterwards fixes one file, not the next. Setting source precedence — inspection findings outrank broker representations — and requiring a cited source for each fact prevents the whole class of error.',
+    9: 'Approving the declination is not approving the letter. Generated text can state a reason that differs from the actual basis, which is a regulatory exposure. The stated reason needs its own check.' }
+};
 
-  var sums = {}, counts = {};
-  DIMENSIONS.forEach(function (d) { sums[d.id] = 0; counts[d.id] = 0; });
+/* wording fix that follows the Q2 change */
+BASE.ROLE_ACTION.ds.framing[0] = 'Rewrite your standard meeting-prep request to name the relationship history, the products we actually sell, and the exact brief format you want.';
+BASE.ROLE_ACTION.ds.context[1] = 'Bring our product guide and pricing into the flow by default, so growth suggestions stay inside the products we actually sell.';
 
-  for (var i = 0; i < qs.length; i++) {
-    var q = qs[i], idx = answers[i];
-    if (idx == null || idx < 0 || idx >= q.o.length) {
-      throw new Error('Answer ' + i + ' out of range: ' + idx);
-    }
-    sums[q.d] += q.o[idx][1];
-    counts[q.d]++;
-  }
-
-  var dims = DIMENSIONS.map(function (d) {
-    var s = round2(sums[d.id] / counts[d.id]);
-    return { id: d.id, name: d.name, short: d.short, score: s,
-             weight: WEIGHTS[roleId][d.id], band: bandFor(s).name };
+function buildRoleQ(role) {
+  var base = BASE.Q[role].map(function (q, i) {
+    var e = (ROLE_EDITS[role] || {})[i], src = e || q, out = { sec: 'R', d: q.d, type: src.type, q: src.q };
+    if (src.o) out.o = src.o;
+    ['groups', 'items', 'note', 'topic', 'explain'].forEach(function (k) { if (src[k]) out[k] = src[k]; });
+    if (out.type === 'jd') out.explain = JD_EXPLAIN[role][i];
+    out.edited = !!e;
+    return out;
   });
-
-  var w = WEIGHTS[roleId], num = 0, den = 0;
-  dims.forEach(function (d) { num += d.score * w[d.id]; den += w[d.id]; });
-  var overall = round2(num / den);
-
-  /* Rank gaps by headroom x role weight; ties broken by raw score then
-     by the canonical dimension order so results are fully deterministic. */
-  var order = {};
-  DIMENSIONS.forEach(function (d, i) { order[d.id] = i; });
-  var ranked = dims.slice().sort(function (a, b) {
-    var ga = (5 - a.score) * a.weight, gb = (5 - b.score) * b.weight;
-    if (gb !== ga) return gb - ga;
-    if (a.score !== b.score) return a.score - b.score;
-    return order[a.id] - order[b.id];
-  });
-
-  var path = ranked.slice(0, 3).map(function (d, i) {
-    var lv = levelIndex(d.score);
-    var g = GUIDANCE[d.id][lv];
-    return {
-      rank: i + 1,
-      dim: d.id,
-      dimName: d.name,
-      dimShort: d.short,
-      dimScore: d.score,
-      level: lv,
-      levelLabel: LEVEL_LABEL[lv],
-      heading: g.h,
-      why: g.w,
-      actions: g.a.slice(),
-      roleAction: ROLE_ACTION[roleId][d.id][lv]
-    };
-  });
-
-  var b = bandFor(overall);
-  var strongest = dims.slice().sort(function (a, b2) {
-    if (b2.score !== a.score) return b2.score - a.score;
-    return order[a.id] - order[b2.id];
-  })[0];
-
-  return {
-    role: roleId,
-    roleName: (ROLES.filter(function (r) { return r.id === roleId; })[0] || {}).name,
-    overall: overall,
-    band: b.name,
-    bandDesc: b.desc,
-    dims: dims,
-    strongest: strongest,
-    path: path
-  };
-}
-
-/* ------------------------------------------------------------
-   RESULT CODE CODEC  (UTF-8 safe base64url, no dependencies)
-   ------------------------------------------------------------ */
-
-var B64 = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_';
-
-function utf8Bytes(str) {
-  var out = [], i, c;
-  for (i = 0; i < str.length; i++) {
-    c = str.charCodeAt(i);
-    if (c < 0x80) out.push(c);
-    else if (c < 0x800) { out.push(0xc0 | (c >> 6), 0x80 | (c & 63)); }
-    else if (c >= 0xd800 && c <= 0xdbff && i + 1 < str.length) {
-      var c2 = str.charCodeAt(i + 1);
-      var cp = 0x10000 + ((c - 0xd800) << 10) + (c2 - 0xdc00);
-      out.push(0xf0 | (cp >> 18), 0x80 | ((cp >> 12) & 63), 0x80 | ((cp >> 6) & 63), 0x80 | (cp & 63));
-      i++;
-    } else { out.push(0xe0 | (c >> 12), 0x80 | ((c >> 6) & 63), 0x80 | (c & 63)); }
-  }
+  var c1 = { sec: 'R', d: 'framing', type: 'sort', topic: 'Choosing the right model', q: MODEL_Q, groups: MODEL_GROUPS, items: ROLE_SORTS[role].model, explain: MODEL_EXPLAIN };
+  var c2 = { sec: 'R', d: 'build', type: 'sort', topic: 'How much setup a task is worth', q: SETUP_Q, groups: SETUP_GROUPS, items: ROLE_SORTS[role].setup, explain: SETUP_EXPLAIN };
+  var out = [base[0], base[1], c1, base[2], base[3], base[4], base[5], c2].concat(base.slice(6));
+  out.forEach(function (q, i) { q.id = role.toUpperCase() + (i + 1); });
   return out;
 }
+var ROLEQ = { ds: buildRoleQ('ds'), cl: buildRoleQ('cl'), uw: buildRoleQ('uw') };
 
-function bytesToUtf8(bytes) {
-  var out = '', i = 0, c, cp;
-  while (i < bytes.length) {
-    c = bytes[i++];
-    if (c < 0x80) out += String.fromCharCode(c);
-    else if (c < 0xe0) out += String.fromCharCode(((c & 31) << 6) | (bytes[i++] & 63));
-    else if (c < 0xf0) out += String.fromCharCode(((c & 15) << 12) | ((bytes[i++] & 63) << 6) | (bytes[i++] & 63));
-    else {
-      cp = ((c & 7) << 18) | ((bytes[i++] & 63) << 12) | ((bytes[i++] & 63) << 6) | (bytes[i++] & 63);
-      cp -= 0x10000;
-      out += String.fromCharCode(0xd800 + (cp >> 10), 0xdc00 + (cp & 1023));
-    }
-  }
-  return out;
-}
+function questionsFor(track) { return track === 'found' ? FOUND.slice() : ROLEQ[track].slice(); }
+function isKnowledge(q) { return q.type === 'single' || q.type === 'multi' || q.type === 'match' || q.type === 'sort'; }
 
-function b64urlEncode(str) {
-  var b = utf8Bytes(str), out = '', i;
-  for (i = 0; i < b.length; i += 3) {
-    var n = (b[i] << 16) | ((b[i + 1] || 0) << 8) | (b[i + 2] || 0);
-    out += B64[(n >> 18) & 63] + B64[(n >> 12) & 63];
-    out += (i + 1 < b.length) ? B64[(n >> 6) & 63] : '';
-    out += (i + 2 < b.length) ? B64[n & 63] : '';
-  }
-  return out;
-}
-
-function b64urlDecode(s) {
-  s = String(s).replace(/[^A-Za-z0-9\-_]/g, '');
-  var bytes = [], i, n, rem;
-  for (i = 0; i + 1 < s.length; i += 4) {
-    rem = Math.min(4, s.length - i);
-    n = (B64.indexOf(s[i]) << 18) | (B64.indexOf(s[i + 1]) << 12) |
-        ((rem > 2 ? B64.indexOf(s[i + 2]) : 0) << 6) | (rem > 3 ? B64.indexOf(s[i + 3]) : 0);
-    bytes.push((n >> 16) & 255);
-    if (rem > 2) bytes.push((n >> 8) & 255);
-    if (rem > 3) bytes.push(n & 255);
-  }
-  return bytesToUtf8(bytes);
-}
-
-var CODE_PREFIX = 'MLAI1-';
-var CODE_SUFFIX = '~';
-
-function encodeResult(payload) {
-  return CODE_PREFIX + b64urlEncode(JSON.stringify(payload)) + CODE_SUFFIX;
-}
-
-/* Returns {ok:true, data} or {ok:false, error} — never throws.
-   Tolerant of how people actually paste: surrounding prose, "> " email
-   quote markers, and line wrapping mid-code. The trailing "~" terminator
-   is what makes trailing prose safe to discard — without it, words after
-   the code would be absorbed as base64 characters. */
-function decodeResult(code) {
-  try {
-    var raw = String(code == null ? '' : code);
-    var i = raw.indexOf(CODE_PREFIX);
-    if (i === -1) return { ok: false, error: 'Not a result code (missing the ' + CODE_PREFIX + ' prefix)' };
-    raw = raw.slice(i + CODE_PREFIX.length);
-    var end = raw.indexOf(CODE_SUFFIX);
-    if (end !== -1) {
-      raw = raw.slice(0, end);            /* terminated: strip quote markers/wrapping inside */
-    } else {
-      var m = raw.match(/^[A-Za-z0-9\-_]+/); /* unterminated: take the contiguous run only */
-      raw = m ? m[0] : '';
-    }
-    if (!raw) return { ok: false, error: 'Result code is empty' };
-    var json = b64urlDecode(raw);
-    var d = JSON.parse(json);
-    if (!d || d.v !== ENGINE_VERSION) return { ok: false, error: 'Unsupported code version' };
-    if (!QUESTIONS[d.r]) return { ok: false, error: 'Unknown role in code: ' + d.r };
-    if (!Array.isArray(d.a) || d.a.length !== QUESTIONS[d.r].length) return { ok: false, error: 'Wrong number of answers' };
-    for (var k = 0; k < d.a.length; k++) {
-      if (typeof d.a[k] !== 'number' || d.a[k] < 0 || d.a[k] >= QUESTIONS[d.r][k].o.length) {
-        return { ok: false, error: 'Answer ' + (k + 1) + ' is out of range' };
+/* ---------------- scoring ---------------- */
+function isInt(n) { return typeof n === 'number' && isFinite(n) && Math.floor(n) === n; }
+function validAnswer(q, a) {
+  switch (q.type) {
+    case 'sc': case 'jd': case 'single':
+      return isInt(a) && a >= 0 && a < q.o.length;
+    case 'multi':
+      if (!Array.isArray(a)) return false;
+      var seen = {};
+      for (var i = 0; i < a.length; i++) {
+        if (!isInt(a[i]) || a[i] < 0 || a[i] >= q.o.length || seen[a[i]]) return false;
+        seen[a[i]] = 1;
       }
-    }
-    return { ok: true, data: d };
-  } catch (e) {
-    return { ok: false, error: 'Could not read this code — it looks truncated or altered' };
+      return true;
+    case 'match':
+      return Array.isArray(a) && a.length === q.pairs.length && a.every(function (v) { return isInt(v) && v >= 0 && v < q.pairs.length; });
+    case 'sort':
+      return Array.isArray(a) && a.length === q.items.length && a.every(function (v) { return isInt(v) && v >= 0 && v < q.groups.length; });
   }
+  return false;
 }
-
-
-
-/* ===== UI ===== */
-(function(){
-  var $ = function(id){ return document.getElementById(id); };
-  var state = { role:null, answers:[], order:[], i:0, name:'', team:'' };
-
-  /* Deterministic per-session shuffle so Back/Next keeps option order stable. */
-  var seed = (Date.now() ^ (Math.random()*0xffffffff)) >>> 0;
-  function rnd(){ seed = (seed*1664525 + 1013904223) >>> 0; return seed/0x100000000; }
-
-  function esc(s){ return String(s).replace(/[&<>"]/g, function(c){
-    return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]; }); }
-
-  function show(id){
-    ['s-intro','s-quiz','s-result'].forEach(function(x){ $(x).classList.add('hidden'); });
-    $(id).classList.remove('hidden');
-    window.scrollTo({top:0,behavior:'instant'});
+function qFrac(q, a) {
+  var ok = 0, i;
+  switch (q.type) {
+    case 'sc': case 'jd': return (q.o[a][1] - 1) / 4;
+    case 'single': return q.o[a][1] ? 1 : 0;
+    case 'multi':
+      var set = {}; a.forEach(function (x) { set[x] = 1; });
+      for (i = 0; i < q.o.length; i++) if (!!set[i] === q.o[i][1]) ok++;
+      return ok / q.o.length;
+    case 'match':
+      for (i = 0; i < q.pairs.length; i++) if (a[i] === i) ok++;
+      return ok / q.pairs.length;
+    case 'sort':
+      for (i = 0; i < q.items.length; i++) if (a[i] === q.items[i][1]) ok++;
+      return ok / q.items.length;
   }
+  throw new Error('unknown type ' + q.type);
+}
+function qCorrectCount(q, a) {
+  var n = q.type === 'multi' ? q.o.length : q.type === 'match' ? q.pairs.length : q.type === 'sort' ? q.items.length : 1;
+  return { ok: Math.round(qFrac(q, a) * n), of: n };
+}
+function mean(xs) { var s = 0; xs.forEach(function (x) { s += x; }); return xs.length ? s / xs.length : 0; }
 
-  /* ---------- intro ---------- */
-  ROLES.forEach(function(r){
-    var b = document.createElement('button');
-    b.className='role'; b.type='button'; b.setAttribute('aria-pressed','false'); b.dataset.role=r.id;
-    b.innerHTML = '<span class="rn">'+esc(r.name)+'</span><span class="rb">'+esc(r.blurb)+'</span>';
-    b.onclick = function(){
-      state.role = r.id;
-      Array.prototype.forEach.call($('roleList').children, function(c){
-        c.setAttribute('aria-pressed', c.dataset.role===r.id ? 'true':'false');
-      });
-      $('startBtn').disabled = false;
-      $('introHint').textContent = '12 questions, about 7 minutes';
-    };
-    $('roleList').appendChild(b);
-  });
+/* Combines whatever steps have been completed on this page.
+   s = { F: [6 answers] | null, role: 'ds'|'cl'|'uw'|null, R: [14 answers] | null } */
+function scoreSession(s) {
+  var hasF = !!s.F, role = s.role || null;
+  if (!hasF && !role) throw new Error('nothing to score');
+  if (hasF && s.F.length !== FOUND.length) throw new Error('foundations answer count');
+  if (role && (!ROLEQ[role] || !s.R || s.R.length !== ROLEQ[role].length)) throw new Error('practice answer count');
 
-  $('identify').onchange = function(){
-    $('idFields').classList.toggle('hidden', !this.checked);
-    if(this.checked) $('nameIn').focus();
-  };
-
-  $('startBtn').onclick = function(){
-    if(!state.role) return;
-    var qs = QUESTIONS[state.role];
-    state.answers = qs.map(function(){ return null; });
-    /* Build display order for each question: judgment items get shuffled so the
-       best answer isn't always first; scenario anchors stay in their meaningful order. */
-    state.order = qs.map(function(q){
-      var ix = q.o.map(function(_,i){ return i; });
-      if(q.type==='jd'){
-        for(var k=ix.length-1;k>0;k--){ var j=Math.floor(rnd()*(k+1)); var t=ix[k]; ix[k]=ix[j]; ix[j]=t; }
-      }
-      return ix;
+  var review = [], foundPct = null, lit = null, missed = [];
+  if (hasF) {
+    var fFracs = FOUND.map(function (q, i) { return qFrac(q, s.F[i]); });
+    foundPct = Math.round(mean(fFracs) * 100);
+    lit = foundPct >= THRESH.literatePct;
+    FOUND.forEach(function (q, i) {
+      if (fFracs[i] < 1) missed.push(q.topic + ': ' + q.explain);
+      review.push({ q: q, a: s.F[i], frac: fFracs[i], cc: qCorrectCount(q, s.F[i]), num: i + 1, step: 1 });
     });
-    if($('identify').checked){
-      state.name = $('nameIn').value.trim().slice(0,60);
-      state.team = $('teamIn').value.trim().slice(0,60);
-    } else { state.name=''; state.team=''; }
+  }
+  var critLit = hasF
+    ? { tier: 'literate', name: 'AI Literate', met: lit, rows: [{ label: 'AI foundations', met: lit, text: foundPct + '% (need ' + THRESH.literatePct + '%)' }] }
+    : { tier: 'literate', name: 'AI Literate', met: false, pending: true, rows: [{ label: 'AI foundations', met: false, pending: true, text: 'Not taken yet' }] };
+  var common = { hasFound: hasF, role: role, roleName: role ? trackById(role).name : null, foundPct: foundPct, literate: lit };
+
+  /* ---------- foundations only ---------- */
+  if (!role) {
+    var p = lit && !missed.length
+      ? { kind: 'next', name: 'Next step', scoreText: foundPct + '%', levelLabel: 'Step 2', heading: 'Take your role assessment next',
+          why: 'You have the foundations. Whether you work at AI Champion or AI Builder level depends on how you use AI in your own work — that is what step 2 measures.',
+          actions: ['Pick the role closest to your work — Distribution / Sales, Claims or Underwriting.'], roleAction: null }
+      : { kind: 'found', name: 'AI foundations', scoreText: foundPct + '%', levelLabel: lit ? 'Build on it' : 'Start here',
+          heading: lit ? 'Tidy up the last foundations gaps' : 'Get the AI basics solid',
+          why: lit ? 'You are AI Literate. These are the points you missed — worth fixing:'
+                   : 'AI Literate is the baseline everyone is expected to reach: ' + THRESH.literatePct + '% on the foundations. You scored ' + foundPct + '%. These are the points to fix:',
+          actions: missed, roleAction: null };
+    p.rank = 1;
+    var tf = lit ? 'literate' : 'pre';
+    return merge(common, { dims: null, practice: null, champion: false, builder: false, provisional: false,
+      achieved: lit ? ['literate'] : [], primary: tf, label: TIERS[tf].name, tierDesc: TIERS[tf].desc,
+      criteria: [critLit], path: [p], review: review });
+  }
+
+  /* ---------- role step (with or without foundations) ---------- */
+  var RQ = ROLEQ[role], W = BASE.WEIGHTS[role];
+  var dims = DIMENSIONS.map(function (d) {
+    var fr = [];
+    RQ.forEach(function (q, i) { if (q.d === d.id) fr.push(qFrac(q, s.R[i])); });
+    return { id: d.id, name: d.name, short: d.short, weight: W[d.id], score: round2(1 + 4 * mean(fr)) };
+  });
+  var byDim = {}; dims.forEach(function (d) { byDim[d.id] = d.score; });
+  var wsum = 0, tot = 0;
+  dims.forEach(function (d) { wsum += d.weight; tot += d.weight * d.score; });
+  var practice = round2(tot / wsum);
+
+  var champLvl = CHAMPION_DIMS.every(function (id) { return byDim[id] >= THRESH.champion; });
+  var buildLvl = byDim.build >= THRESH.builderBuild && byDim.controls >= THRESH.builderControls;
+  var champ = lit === true && champLvl, builder = lit === true && buildLvl;
+  var achieved = [];
+  if (lit) achieved.push('literate');
+  if (champ) achieved.push('champion');
+  if (builder) achieved.push('builder');
+
+  var primary, provisional = false;
+  if (hasF) primary = champ && builder ? 'both' : builder ? 'builder' : champ ? 'champion' : lit ? 'literate' : 'pre';
+  else {
+    primary = champLvl && buildLvl ? 'both' : buildLvl ? 'builder' : champLvl ? 'champion' : 'pending';
+    provisional = primary !== 'pending';
+  }
+  var label = TIERS[primary].name + (provisional ? ' (provisional)' : '');
+  var tierDesc = TIERS[primary].desc + (provisional ? PROVISIONAL_NOTE : '');
+
+  function row(id, need) {
+    var d = dims.filter(function (x) { return x.id === id; })[0];
+    return { label: d.name, met: d.score >= need, text: d.score.toFixed(2) + ' (need ' + need.toFixed(2) + ')' };
+  }
+  var litRow = { label: 'AI Literate first', met: lit === true, pending: !hasF, text: hasF ? (lit ? 'Yes' : 'Not yet') : 'Take AI foundations' };
+  var criteria = [
+    critLit,
+    { tier: 'champion', name: 'AI Champion', met: champ, pending: !hasF && champLvl,
+      rows: [litRow].concat(CHAMPION_DIMS.map(function (id) { return row(id, THRESH.champion); })) },
+    { tier: 'builder', name: 'AI Builder', met: builder, pending: !hasF && buildLvl,
+      rows: [litRow, row('build', THRESH.builderBuild), row('controls', THRESH.builderControls)] }
+  ];
+
+  var cands = dims.map(function (d, i) { return { d: d, gap: (5 - d.score) * d.weight, ord: i }; });
+  cands.sort(function (a, b) { return (b.gap - a.gap) || (a.d.score - b.d.score) || (a.ord - b.ord); });
+  var path = [];
+  if (hasF && !lit) path.push({ kind: 'found', name: 'AI foundations', scoreText: foundPct + '%', levelLabel: LEVEL_LABEL[0],
+    heading: 'Get the AI basics solid',
+    why: 'AI Literate is the baseline everyone is expected to reach: ' + THRESH.literatePct + '% on the foundations. You scored ' + foundPct + '%. These are the points to fix:',
+    actions: missed, roleAction: null });
+  cands.slice(0, 3 - path.length).forEach(function (c) {
+    var lv = levelIndex(c.d.score), g = GUIDANCE[c.d.id][lv];
+    path.push({ kind: 'dim', id: c.d.id, name: c.d.name, scoreText: c.d.score.toFixed(2), level: lv, levelLabel: LEVEL_LABEL[lv],
+      heading: g.h, why: g.w, actions: g.a, roleAction: BASE.ROLE_ACTION[role][c.d.id][lv] });
+  });
+  path.forEach(function (p, i) { p.rank = i + 1; });
+
+  RQ.forEach(function (q, i) { review.push({ q: q, a: s.R[i], frac: qFrac(q, s.R[i]), cc: qCorrectCount(q, s.R[i]), num: i + 1, step: 2 }); });
+
+  return merge(common, { dims: dims, practice: practice, champion: champ, builder: builder, provisional: provisional,
+    championLevel: champLvl, builderLevel: buildLvl, achieved: achieved, primary: primary, label: label, tierDesc: tierDesc,
+    criteria: criteria, path: path, review: review });
+}
+/* Label for one answered question in the review */
+function reviewVerdict(r) {
+  var q = r.q, a = r.a;
+  if (q.type === 'sc') { var lv = q.o[a][1]; return { cls: lv >= 4 ? 'full' : lv === 3 ? 'part' : 'none', text: 'Level ' + lv + ' of 5' }; }
+  if (q.type === 'jd') { var p = q.o[a][1]; return p === 5 ? { cls: 'full', text: 'Best answer' } : p === 3 ? { cls: 'part', text: 'Partly right' } : { cls: 'none', text: 'Not the best answer' }; }
+  var cls = r.frac === 1 ? 'full' : (r.frac === 0 ? 'none' : 'part');
+  return { cls: cls, text: r.cc.of === 1 ? (r.frac === 1 ? 'Correct' : 'Incorrect') : r.cc.ok + ' of ' + r.cc.of + ' correct' };
+}
+function merge(a, b) { var o = {}, k; for (k in a) o[k] = a[k]; for (k in b) o[k] = b[k]; return o; }
+
+
+</script>
+<script>
+(function () {
+  var $ = function (id) { return document.getElementById(id); };
+  function esc(s) {
+    return String(s).replace(/[&<>"']/g, function (c) {
+      return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
+    });
+  }
+  function el(tag, cls, html) { var e = document.createElement(tag); if (cls) e.className = cls; if (html != null) e.innerHTML = html; return e; }
+  function shuffle(n) {
+    var ix = []; for (var i = 0; i < n; i++) ix.push(i);
+    for (var k = n - 1; k > 0; k--) { var j = Math.floor(Math.random() * (k + 1)); var t = ix[k]; ix[k] = ix[j]; ix[j] = t; }
+    return ix;
+  }
+  var DIMNAME = {}; DIMENSIONS.forEach(function (d) { DIMNAME[d.id] = d.name; });
+  var TYPELABEL = { sc: 'Self-rating', jd: 'Judgment call', single: 'Knowledge check', multi: 'Knowledge check', match: 'Knowledge check', sort: 'Knowledge check' };
+  var HINT = {
+    sc: 'Choose the statement that is true of you today. Keys 1–5 work too.',
+    jd: 'Choose the best answer. Keys 1–4 work too.',
+    single: 'Choose one answer.',
+    multi: 'Select all that apply.',
+    match: 'Choose a cause for each mistake. Each cause is used once.',
+    sort: 'Choose a group for every item.'
+  };
+
+  var state = { track: null, qs: [], ans: [], order: [], i: 0, active: false };
+  var picked = null;
+  /* completed steps, kept in memory only while the page is open */
+  var session = { F: null, roles: {}, lastRole: null };
+
+  function show(id) {
+    ['s-intro', 's-quiz', 's-result'].forEach(function (s) { $(s).classList.toggle('hidden', s !== id); });
+    $('homeBtn').classList.toggle('hidden', id === 's-intro');
+    if (window.scrollTo) window.scrollTo(0, 0);
+  }
+
+  /* ---- step picker ---- */
+  TRACKS.forEach(function (t) {
+    var n = questionsFor(t.id).length;
+    var b = el('button', 'role'); b.type = 'button'; b.setAttribute('data-track', t.id); b.setAttribute('aria-pressed', 'false');
+    b.innerHTML = '<span class="rn">' + esc(t.name) + '</span><span class="rb">' + esc(t.blurb) +
+      ' <span style="white-space:nowrap">' + n + ' questions · about ' + t.minutes + ' min</span></span><span class="tag hidden">✓ Done</span>';
+    b.addEventListener('click', function () { pick(t.id); });
+    $(t.step === 1 ? 'foundList' : 'roleList').appendChild(b);
+  });
+  function allCards() { return document.querySelectorAll('#s-intro .role'); }
+  function pick(id) {
+    picked = id;
+    allCards().forEach(function (b) { b.setAttribute('aria-pressed', String(b.getAttribute('data-track') === id)); });
+    if (!id) { $('startBtn').disabled = true; $('startBtn').textContent = 'Start'; return; }
+    var t = trackById(id), redo = id === 'found' ? !!session.F : !!session.roles[id];
+    $('lenNote').textContent = 'Step ' + t.step + ' · ' + t.name + ' · ' + questionsFor(id).length + ' questions' +
+      (t.step === 2 && !session.F ? ' · skipping step 1' : '');
+    $('startBtn').textContent = (redo ? 'Retake ' : 'Start ') + t.name;
+    $('startBtn').disabled = false;
+  }
+  function refreshIntro() {
+    var fDone = !!session.F, rDone = Object.keys(session.roles);
+    $('step1').classList.toggle('done', fDone);
+    $('step2').classList.toggle('done', rDone.length > 0);
+    $('st1').textContent = fDone ? '✓ Done · ' + scoreSession({ F: session.F }).foundPct + '%' : 'Not started';
+    $('st2').textContent = rDone.length ? '✓ Done · ' + rDone.map(function (r) { return trackById(r).name; }).join(', ') : 'Not started';
+    allCards().forEach(function (b) {
+      var id = b.getAttribute('data-track');
+      b.querySelector('.tag').classList.toggle('hidden', !(id === 'found' ? fDone : session.roles[id]));
+    });
+    $('viewBtn').classList.toggle('hidden', !fDone && !rDone.length);
+    $('resumeBox').classList.toggle('hidden', !state.active);
+    if (state.active) $('resumeText').innerHTML = '<b>Unfinished: ' + esc(stepLabel()) + '</b> — question ' + (state.i + 1) + ' of ' + state.qs.length + '. Your answers so far are kept.';
+    /* foundations come first: pre-select it until it is done */
+    pick(fDone ? null : 'found');
+    if (fDone) $('lenNote').textContent = rDone.length ? 'Both steps done — retake either, or view your results' : 'Next: pick your role in step 2';
+  }
+  $('startBtn').addEventListener('click', function () { start(picked); });
+  $('viewBtn').addEventListener('click', function () { renderResult(); show('s-result'); });
+  $('resumeBtn').addEventListener('click', function () { show('s-quiz'); render(); });
+  $('homeBtn').addEventListener('click', function () { refreshIntro(); show('s-intro'); });
+  $('nextBtn').addEventListener('click', next);
+  $('backBtn').addEventListener('click', back);
+
+  function stepLabel() { var t = trackById(state.track); return 'Step ' + t.step + ' · ' + (t.practice || t.name); }
+
+  function start(track) {
+    if (!track) return;
+    state.track = track;
+    state.active = true;
+    state.qs = questionsFor(state.track);
+    state.ans = state.qs.map(function (q) {
+      if (q.type === 'match') return q.pairs.map(function () { return null; });
+      if (q.type === 'sort') return q.items.map(function () { return null; });
+      if (q.type === 'multi') return [];
+      return null;
+    });
+    state.order = state.qs.map(function (q) {
+      if (q.type === 'jd' || q.type === 'single' || q.type === 'multi') return shuffle(q.o.length);
+      if (q.type === 'match') return shuffle(q.pairs.length);
+      if (q.type === 'sort') return shuffle(q.items.length);
+      return q.o.map(function (_, i) { return i; });          /* scenario anchors keep their order */
+    });
     state.i = 0;
     show('s-quiz');
     render();
-  };
+  }
 
-  /* ---------- questions ---------- */
-  function render(){
-    var qs = QUESTIONS[state.role], q = qs[state.i], ord = state.order[state.i];
-    var dim = DIMENSIONS.filter(function(d){ return d.id===q.d; })[0];
+  function complete(q, a) {
+    if (q.type === 'multi') return a.length > 0;
+    if (q.type === 'match' || q.type === 'sort') return a.every(function (v) { return v !== null; });
+    return a !== null;
+  }
+  function updateNext() {
+    $('nextBtn').disabled = !complete(state.qs[state.i], state.ans[state.i]);
+  }
 
-    $('pCount').textContent = 'Question '+(state.i+1)+' of '+qs.length;
-    $('pRole').textContent = ROLES.filter(function(r){return r.id===state.role;})[0].name;
-    $('pFill').style.width = ((state.i)/qs.length*100)+'%';
-
-    $('qChip').textContent = dim.name + (q.type==='jd' ? ' · judgment' : '');
-    $('qChip').className = 'chip' + (q.type==='jd' ? ' jd' : '');
+  function render() {
+    var i = state.i, q = state.qs[i], n = state.qs.length;
+    $('pCount').textContent = 'Question ' + (i + 1) + ' of ' + n;
+    $('pSec').textContent = stepLabel();
+    $('pFill').style.width = (i / n * 100) + '%';
+    $('secBanner').classList.toggle('hidden', i !== 0);
+    if (i === 0) $('secBanner').innerHTML = '<b>' + esc(stepLabel().replace(' · ', ' — ')) + '.</b> ' + esc(SECTION_BLURB[q.sec]);
+    $('qChip').textContent = (q.sec === 'F' ? 'Foundations' : DIMNAME[q.d]) + ' · ' + TYPELABEL[q.type];
+    $('qChip').className = 'chip' + (q.type === 'sc' ? '' : ' jd');
     $('qText').textContent = q.q;
+    $('qNote').classList.toggle('hidden', !q.note);
+    $('qNote').innerHTML = q.note ? q.note.map(function (n) { return '<dt>' + esc(n[0]) + '</dt><dd>' + esc(n[1]) + '</dd>'; }).join('') : '';
+    $('qHint').textContent = HINT[q.type];
+    var body = $('qBody'); body.innerHTML = '';
+    var ord = state.order[i];
 
-    var box = $('qOpts'); box.innerHTML='';
-    ord.forEach(function(authoredIdx, pos){
-      var b = document.createElement('button');
-      b.className='opt'; b.type='button';
-      b.setAttribute('aria-pressed', state.answers[state.i]===authoredIdx ? 'true':'false');
-      b.innerHTML = '<span class="key">'+(pos+1)+'</span><span>'+esc(q.o[authoredIdx][0])+'</span>';
-      b.onclick = function(){ choose(authoredIdx); };
-      box.appendChild(b);
-    });
-
-    $('nextBtn').disabled = state.answers[state.i]===null;
-    $('nextBtn').textContent = (state.i===qs.length-1) ? 'See my results' : 'Next';
-    $('backBtn').style.visibility = state.i===0 ? 'hidden':'visible';
+    if (q.type === 'sc' || q.type === 'jd' || q.type === 'single' || q.type === 'multi') {
+      var wrap = el('div', 'opts');
+      ord.forEach(function (ai, pos) {
+        var b = el('button', 'opt'); b.type = 'button'; b.setAttribute('data-a', ai);
+        var key = q.type === 'multi' ? '<span class="key box">✓</span>' : '<span class="key">' + (pos + 1) + '</span>';
+        b.innerHTML = key + '<span>' + esc(q.o[ai][0]) + '</span>';
+        b.addEventListener('click', function () { choose(ai); });
+        wrap.appendChild(b);
+      });
+      body.appendChild(wrap);
+    } else if (q.type === 'match') {
+      var st = el('div', 'stack'); st.style.marginTop = '0';
+      q.pairs.forEach(function (p, li) {
+        var row = el('div', 'mrow');
+        row.appendChild(el('div', 'it', esc(p[0])));
+        var sel = document.createElement('select'); sel.setAttribute('data-left', li);
+        sel.setAttribute('aria-label', 'Cause for: ' + p[0]);
+        sel.appendChild(new Option('Choose the cause…', ''));
+        ord.forEach(function (ri) { sel.appendChild(new Option(q.pairs[ri][1], String(ri))); });
+        sel.addEventListener('change', function () {
+          state.ans[state.i][li] = sel.value === '' ? null : parseInt(sel.value, 10);
+          paint();
+        });
+        row.appendChild(sel);
+        st.appendChild(row);
+      });
+      body.appendChild(st);
+    } else if (q.type === 'sort') {
+      var st2 = el('div', 'stack'); st2.style.marginTop = '0';
+      ord.forEach(function (ii) {
+        var row = el('div', 'srow');
+        row.appendChild(el('div', 'it', esc(q.items[ii][0])));
+        var seg = el('div', 'seg');
+        q.groups.forEach(function (g, gi) {
+          var b = el('button', null, esc(g)); b.type = 'button';
+          b.setAttribute('data-item', ii); b.setAttribute('data-g', gi);
+          b.addEventListener('click', function () { state.ans[state.i][ii] = gi; paint(); });
+          seg.appendChild(b);
+        });
+        row.appendChild(seg);
+        st2.appendChild(row);
+      });
+      body.appendChild(st2);
+    }
+    $('backBtn').style.visibility = i === 0 ? 'hidden' : 'visible';
+    $('nextBtn').textContent = i === n - 1 ? 'See my results' : 'Next';
+    paint();
   }
 
-  function choose(authoredIdx){
-    state.answers[state.i] = authoredIdx;
-    var ord = state.order[state.i];
-    Array.prototype.forEach.call($('qOpts').children, function(c,pos){
-      c.setAttribute('aria-pressed', ord[pos]===authoredIdx ? 'true':'false');
-    });
-    $('nextBtn').disabled = false;
+  /* reflect current answer state onto the controls without rebuilding them */
+  function paint() {
+    var q = state.qs[state.i], a = state.ans[state.i], body = $('qBody');
+    if (q.type === 'sc' || q.type === 'jd' || q.type === 'single') {
+      body.querySelectorAll('.opt').forEach(function (b) { b.setAttribute('aria-pressed', String(+b.getAttribute('data-a') === a)); });
+    } else if (q.type === 'multi') {
+      body.querySelectorAll('.opt').forEach(function (b) { b.setAttribute('aria-pressed', String(a.indexOf(+b.getAttribute('data-a')) !== -1)); });
+    } else if (q.type === 'match') {
+      body.querySelectorAll('select').forEach(function (s) {
+        var v = a[+s.getAttribute('data-left')];
+        s.value = v === null ? '' : String(v);
+        s.classList.toggle('set', v !== null);
+      });
+    } else if (q.type === 'sort') {
+      body.querySelectorAll('.seg button').forEach(function (b) {
+        b.setAttribute('aria-pressed', String(a[+b.getAttribute('data-item')] === +b.getAttribute('data-g')));
+      });
+    }
+    updateNext();
   }
 
-  $('nextBtn').onclick = function(){
-    if(state.answers[state.i]===null) return;
-    if(state.i === QUESTIONS[state.role].length-1){ finish(); }
-    else { state.i++; render(); }
-  };
-  $('backBtn').onclick = function(){ if(state.i>0){ state.i--; render(); } };
+  function choose(ai) {
+    var q = state.qs[state.i];
+    if (q.type === 'multi') {
+      var a = state.ans[state.i], k = a.indexOf(ai);
+      if (k === -1) a.push(ai); else a.splice(k, 1);
+      a.sort(function (x, y) { return x - y; });
+    } else {
+      state.ans[state.i] = ai;
+    }
+    paint();
+  }
 
-  document.addEventListener('keydown', function(e){
-    if($('s-quiz').classList.contains('hidden')) return;
-    var ord = state.order[state.i];
-    if(e.key>='1' && e.key<='9'){
-      var pos = parseInt(e.key,10)-1;
-      if(pos < ord.length){ choose(ord[pos]); e.preventDefault(); }
-    } else if(e.key==='Enter'){
-      if(!$('nextBtn').disabled){ $('nextBtn').click(); e.preventDefault(); }
-    } else if(e.key==='Backspace' && state.i>0){
-      $('backBtn').click(); e.preventDefault();
+  function next() {
+    if (!complete(state.qs[state.i], state.ans[state.i])) return;
+    if (state.i === state.qs.length - 1) { finish(); return; }
+    state.i++; render();
+  }
+  function back() { if (state.i > 0) { state.i--; render(); } }
+
+  document.addEventListener('keydown', function (e) {
+    if ($('s-quiz').classList.contains('hidden')) return;
+    var t = e.target && e.target.tagName;
+    if (t === 'INPUT' || t === 'SELECT' || t === 'TEXTAREA') return;
+    var q = state.qs[state.i];
+    if (/^[1-9]$/.test(e.key) && (q.type === 'sc' || q.type === 'jd' || q.type === 'single' || q.type === 'multi')) {
+      var pos = parseInt(e.key, 10) - 1, ord = state.order[state.i];
+      if (pos < ord.length) { choose(ord[pos]); e.preventDefault(); }
+    } else if (e.key === 'Enter') {
+      if (!$('nextBtn').disabled) { next(); e.preventDefault(); }
+    } else if (e.key === 'Backspace') {
+      back(); e.preventDefault();
     }
   });
 
-  /* ---------- results ---------- */
-  function finish(){
-    var res;
-    try { res = score(state.role, state.answers); }
-    catch(err){
-      show('s-result');
-      $('rBand').textContent = 'Something went wrong';
-      $('rBandDesc').textContent = err.message;
-      return;
-    }
+  /* ---------------- results ---------------- */
+  function clone(a) { return Array.isArray(a) ? a.slice() : a; }
 
-    $('rRole').textContent = res.roleName;
-    $('rScore').textContent = res.overall.toFixed(2);
-    $('rBand').textContent = res.band;
-    $('rBandDesc').textContent = res.bandDesc;
-
-    var pct = (res.overall-1)/4*100;
-    var you = $('youMark');
-    you.style.left = pct+'%';
-    you.className = 'mk you' +
-      (pct < 9 ? ' atStart' : '') +
-      (pct > 91 ? ' atEnd' : '');
-    $('youLbl').textContent = 'You '+res.overall.toFixed(2);
-    $('baselineNote').innerHTML = 'Bands: <b>Aware</b> 1.00–2.24 · <b>Applying</b> 2.25–3.24 · <b>Building</b> 3.25–4.24 · <b>Leading</b> 4.25–5.00. This is a self-assessment of one person’s practical capability — a starting point for a learning conversation, not a performance rating.';
-
-    var dimBox = $('rDims'); dimBox.innerHTML='';
-    res.dims.forEach(function(d){
-      var cls = d.score < 2.5 ? 'vlow' : d.score < 3.25 ? 'low' : d.score >= 4.25 ? 'high' : '';
-      var el = document.createElement('div');
-      el.className = 'dim '+cls;
-      el.innerHTML =
-        '<div class="dh"><span class="dn">'+esc(d.name)+
-        ' <span class="dw">— weighting '+d.weight.toFixed(1)+'</span></span>'+
-        '<span class="dv">'+d.score.toFixed(1)+'</span></div>'+
-        '<div class="dtrack"><div class="dbar" style="width:'+((d.score-1)/4*100)+'%"></div></div>';
-      dimBox.appendChild(el);
-    });
-    $('strongNote').textContent = 'Strongest: ' + res.strongest.name +
-      ' at ' + res.strongest.score.toFixed(1) + '. That is the one to lean on when you help others.';
-
-    var pathBox = $('rPath'); pathBox.innerHTML='';
-    res.path.forEach(function(p){
-      var el = document.createElement('div');
-      el.className='step';
-      el.innerHTML =
-        '<div class="sh"><span class="num">'+p.rank+'</span>'+
-        '<span class="sd">'+esc(p.dimShort)+' · scored '+p.dimScore.toFixed(1)+' · '+esc(p.levelLabel)+'</span></div>'+
-        '<h4>'+esc(p.heading)+'</h4>'+
-        '<p class="why">'+esc(p.why)+'</p>'+
-        '<ul>'+p.actions.map(function(a){ return '<li>'+esc(a)+'</li>'; }).join('')+'</ul>'+
-        '<div class="first"><b>Build this in your own work</b>'+esc(p.roleAction)+'</div>';
-      pathBox.appendChild(el);
-    });
-
-    var d = new Date();
-    var stamp = d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');
-    var code = encodeResult({ v:ENGINE_VERSION, r:state.role, a:state.answers,
-                              t:stamp, n:state.name, m:state.team });
-    $('codeOut').value = code;
-    $('codeIdNote').textContent = state.name ? ', plus the name you entered' : ' — no name, so it is anonymous';
-
+  function finish() {
+    var a = state.ans.map(clone);
+    state.active = false;
+    if (state.track === 'found') session.F = a;
+    else { session.roles[state.track] = a; session.lastRole = state.track; }
+    renderResult();
     show('s-result');
   }
 
-  $('copyBtn').onclick = function(){
-    var ta = $('codeOut');
-    ta.select(); ta.setSelectionRange(0, 99999);
-    var done = function(){
-      $('copiedMsg').classList.remove('hidden');
-      setTimeout(function(){ $('copiedMsg').classList.add('hidden'); }, 2200);
-    };
-    if(navigator.clipboard && navigator.clipboard.writeText){
-      navigator.clipboard.writeText(ta.value).then(done, function(){ try{document.execCommand('copy');done();}catch(e){} });
-    } else { try{ document.execCommand('copy'); done(); }catch(e){} }
-  };
-  $('printBtn').onclick = function(){ window.print(); };
-  $('againBtn').onclick = function(){ location.reload(); };
+  function bar(label, valueText, pct, cls, sub) {
+    return '<div class="dim ' + cls + '"><div class="dh"><span class="dn">' + esc(label) +
+      (sub ? ' <span class="dw">' + esc(sub) + '</span>' : '') + '</span><span class="dv">' + esc(valueText) +
+      '</span></div><div class="dtrack"><div class="dbar" style="width:' + Math.max(2, Math.min(100, pct)) + '%"></div></div></div>';
+  }
+  function scoreCls(s) { return s < 2.5 ? 'vlow' : s < 3.25 ? 'low' : s >= 4.25 ? 'high' : ''; }
+
+  function flowItem(n, title, done, doneText, todoText, buttons) {
+    return '<div class="flowitem ' + (done ? 'done' : 'todo') + '"><div class="fh"><span class="stnum">' + (done ? '✓' : n) + '</span>' +
+      esc(title) + '</div><div class="fb">' + (done ? doneText : todoText) + '</div><div class="btns">' + buttons + '</div></div>';
+  }
+  function goBtn(track, label, primary) {
+    return '<button type="button" class="btn sm' + (primary ? '' : ' ghost') + '" data-go="' + track + '">' + esc(label) + '</button>';
+  }
+
+  function renderResult() {
+    var role = session.lastRole;
+    var res = scoreSession({ F: session.F, role: role, R: role ? session.roles[role] : null });
+    var both = res.hasFound && !!res.role;
+
+    $('rTrack').textContent = 'Your result · ' + (both ? 'AI foundations + ' + res.roleName : res.role ? res.roleName + ' only' : 'AI foundations only');
+    $('rTier').textContent = res.label;
+    $('rTierDesc').textContent = res.tierDesc;
+    var tiers = res.role ? ['literate', 'champion', 'builder'] : ['literate'];
+    $('rBadges').innerHTML = tiers.map(function (t) {
+      var on = res.achieved.indexOf(t) !== -1, pend = t === 'literate' && !res.hasFound;
+      return '<span class="badge' + (on ? ' on' : '') + (pend ? ' pend' : '') + '">' + (on ? '✓ ' : '') + esc(TIERS[t].name) +
+        (pend ? ' — not checked yet' : '') + '</span>';
+    }).join('');
+
+    /* ---- the two steps, and what is missing ---- */
+    var roleBtns = TRACKS.filter(function (t) { return t.step === 2; }).map(function (t) {
+      return goBtn(t.id, (session.roles[t.id] ? 'Retake ' : '') + t.name, !res.role);
+    }).join('');
+    $('rFlow').innerHTML =
+      flowItem(1, 'AI foundations', res.hasFound,
+        'Done · ' + res.foundPct + '% · ' + (res.literate ? 'AI Literate' : 'below the ' + THRESH.literatePct + '% baseline'),
+        'Not taken yet. Needed to confirm any tier.',
+        goBtn('found', res.hasFound ? 'Retake' : 'Take AI foundations', !res.hasFound)) +
+      flowItem(2, 'Your role', !!res.role,
+        'Done · ' + esc(res.roleName || '') + ' · ' + (res.practice != null ? res.practice.toFixed(2) + ' out of 5' : ''),
+        'Not taken yet. Needed for AI Champion or AI Builder.',
+        roleBtns);
+    $('rFlowState').className = 'flowstate ' + (both ? 'full' : 'part');
+    $('rFlowState').textContent = both ? '✓ Full result — both steps complete.'
+      : 'Partial result — complete the other step for your full result. Your answers so far are kept while this page is open.';
+    $('rFlow').querySelectorAll('[data-go]').forEach(function (b) {
+      b.addEventListener('click', function () { start(b.getAttribute('data-go')); });
+    });
+
+    $('rCrit').innerHTML = res.criteria.map(function (c) {
+      var cls = c.met ? ' met' : (c.pending ? ' pend' : '');
+      var st = c.met ? 'Reached' : (c.tier === 'literate' && c.pending ? 'Not taken' : c.pending ? 'Pending step 1' : 'Not yet');
+      return '<div class="ct' + cls + '"><h4>' + esc(c.name) + ' <span class="st">' + st + '</span></h4><ul>' +
+        c.rows.map(function (r) {
+          var rc = r.pending ? 'pd' : (r.met ? 'ok' : 'no'), ic = r.pending ? '…' : (r.met ? '✓' : '✗');
+          return '<li class="' + rc + '"><span class="ic">' + ic + '</span><span>' + esc(r.label) +
+            '</span><span class="v">' + esc(r.text) + '</span></li>';
+        }).join('') + '</ul></div>';
+    }).join('') + (res.role ? '' :
+      '<p class="note">AI Champion and AI Builder depend on how you use AI in your own work — that is step 2.</p>');
+
+    $('rFound').innerHTML = res.hasFound
+      ? bar('AI foundations', res.foundPct + '%', res.foundPct,
+          res.foundPct >= THRESH.literatePct ? 'high' : (res.foundPct >= 50 ? 'low' : 'vlow'), 'need ' + THRESH.literatePct + '% for AI Literate')
+      : '<p class="meta" style="margin:0">AI foundations — <b>not taken yet</b> (step 1).</p>';
+    $('rPracticeWrap').classList.toggle('hidden', !res.role);
+    if (res.role) {
+      $('rPracticeName').textContent = trackById(res.role).practice;
+      $('rPractice').textContent = res.practice.toFixed(2);
+      $('rDims').innerHTML = res.dims.map(function (d) {
+        return bar(d.name, d.score.toFixed(2), (d.score - 1) / 4 * 100, scoreCls(d.score), 'weight ' + d.weight.toFixed(1));
+      }).join('');
+    } else { $('rDims').innerHTML = ''; }
+    $('rPathNote').textContent = res.role
+      ? 'Ranked by the gaps that matter most for ' + res.roleName.toLowerCase() + ' work.'
+      : 'Based on the foundations questions you missed.';
+
+    $('rPath').innerHTML = res.path.map(function (p) {
+      return '<div class="step"><div class="sh"><span class="num">' + p.rank + '</span><span class="sd">' +
+        esc(p.name) + ' · ' + esc(p.scoreText) + ' · ' + esc(p.levelLabel) + '</span></div>' +
+        '<h4>' + esc(p.heading) + '</h4><p class="why">' + esc(p.why) + '</p><ul>' +
+        p.actions.map(function (a) { return '<li>' + esc(a) + '</li>'; }).join('') + '</ul>' +
+        (p.roleAction ? '<div class="first"><b>Your first move</b>' + esc(p.roleAction) + '</div>' : '') +
+        '</div>';
+    }).join('');
+
+    var html = '', lastStep = 0;
+    res.review.forEach(function (r) {
+      if (r.step !== lastStep) {
+        html += '<div class="rvsec">Step ' + r.step + ' · ' + esc(r.step === 1 ? 'AI foundations' : trackById(res.role).practice) + '</div>';
+        lastStep = r.step;
+      }
+      html += reviewHtml(r);
+    });
+    $('rReview').innerHTML = html;
+  }
+
+  function reviewHtml(r) {
+    var q = r.q, a = r.a, rows = '', v = reviewVerdict(r);
+    function li(ok, txt) { return '<li class="' + (ok ? 'ok' : 'no') + '"><span class="ic">' + (ok ? '✓' : '✗') + '</span><span>' + txt + '</span></li>'; }
+    var area = q.sec === 'F' ? q.topic : DIMNAME[q.d] + (q.topic ? ' · ' + q.topic : '');
+    var explain = q.explain || '';
+    if (q.type === 'sc') {
+      var lv = q.o[a][1];
+      rows += '<li class="' + (lv >= 4 ? 'ok' : 'no') + '"><span class="ic">' + lv + '</span><span>Your answer: ' + esc(q.o[a][0]) + '</span></li>';
+      if (lv < 5) rows += '<li class="nx"><span class="ic">↑</span><span class="up">Next level up: ' + esc(q.o[a + 1][0]) + '</span></li>';
+      explain = lv < 5 ? 'Self-rating: there is no wrong answer, but each level builds on the one before. The next level is the habit to work on.'
+                       : 'Self-rating: you are at the top level on this one.';
+    } else if (q.type === 'jd') {
+      var bi = q.o.findIndex(function (o) { return o[1] === 5; });
+      if (a === bi) rows += li(true, '<b>' + esc(q.o[a][0]) + '</b> — your answer');
+      else {
+        rows += li(false, '<span class="yc">Your answer: ' + esc(q.o[a][0]) + '</span>');
+        rows += li(true, 'Best answer: <b>' + esc(q.o[bi][0]) + '</b>');
+      }
+    } else if (q.type === 'single') {
+      q.o.forEach(function (o, i) {
+        if (o[1]) rows += li(true, '<b>' + esc(o[0]) + '</b>' + (a === i ? ' — your answer' : ''));
+        else if (a === i) rows += li(false, '<span class="yc">' + esc(o[0]) + ' — your answer</span>');
+      });
+    } else if (q.type === 'multi') {
+      q.o.forEach(function (o, i) {
+        var picked = a.indexOf(i) !== -1, ok = picked === o[1];
+        rows += li(ok, esc(o[0]) + ' — <b>' + (o[1] ? 'reliable' : 'not reliable') + '</b>' +
+          (ok ? '' : ' <span class="yc">(you ' + (picked ? 'selected it' : 'left it out') + ')</span>'));
+      });
+    } else if (q.type === 'match') {
+      q.pairs.forEach(function (p, i) {
+        var ok = a[i] === i;
+        rows += li(ok, esc(p[0]) + ' → <b>' + esc(p[1]) + '</b>' +
+          (ok ? '' : ' <span class="yc">(you chose: ' + esc(q.pairs[a[i]][1]) + ')</span>'));
+      });
+    } else if (q.type === 'sort') {
+      q.items.forEach(function (it, i) {
+        var ok = a[i] === it[1];
+        rows += li(ok, esc(it[0]) + ' → <b>' + esc(q.groups[it[1]]) + '</b>' +
+          (ok ? '' : ' <span class="yc">(you chose: ' + esc(q.groups[a[i]]) + ')</span>'));
+      });
+    }
+    return '<div class="rv"><div class="rh"><span class="rt"><span class="rn">Q' + r.num + '</span>' + esc(area) + '</span><span class="pill ' + v.cls + '">' +
+      esc(v.text) + '</span></div><p class="rq">' + esc(q.q) + '</p><ul>' + rows + '</ul>' +
+      (explain ? '<p class="ex">' + esc(explain) + '</p>' : '') + '</div>';
+  }
+
+  $('printBtn').addEventListener('click', function () { window.print(); });
+  $('restartBtn').addEventListener('click', function () { refreshIntro(); show('s-intro'); });
+  refreshIntro();
 })();
 </script>
 </body>
